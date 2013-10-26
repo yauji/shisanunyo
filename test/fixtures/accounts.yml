@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  currency: MyString
+  balance: 1.5
+  exchangeRate: 1.5
+
+two:
+  currency: MyString
+  balance: 1.5
+  exchangeRate: 1.5

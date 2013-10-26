@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-10-26 00:57:52
+  income: 1.5
+  expenditure: 1.5
+  memo: MyText
+
+two:
+  date: 2013-10-26 00:57:52
+  income: 1.5
+  expenditure: 1.5
+  memo: MyText

@@ -1,4 +1,13 @@
 Shisanunyo::Application.routes.draw do
+  resources :account_trans
+
+
+  resources :accounts
+
+
+  resources :trade_logs
+
+
   resources :base_issues
 
 

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-10-26 00:57:22
+  type: 
+  basicPrice: 1
+  noItem: 1
+  buyValueJPY: 1
+  buyValueForeign: 1.5
+  sellValueJPY: 1
+  sellValueForeign: 1.5
+  dividendValueJPY: 1
+  dividendValueForeign: 1.5
+
+two:
+  date: 2013-10-26 00:57:22
+  type: 
+  basicPrice: 1
+  noItem: 1
+  buyValueJPY: 1
+  buyValueForeign: 1.5
+  sellValueJPY: 1
+  sellValueForeign: 1.5
+  dividendValueJPY: 1
+  dividendValueForeign: 1.5

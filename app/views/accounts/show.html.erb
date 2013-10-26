@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Currency:</b>
+  <%= @account.currency %>
+</p>
+
+<p>
+  <b>Balance:</b>
+  <%= @account.balance %>
+</p>
+
+<p>
+  <b>Exchangerate:</b>
+  <%= @account.exchangeRate %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

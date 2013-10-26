@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @trade_log.date %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @trade_log.type %>
+</p>
+
+<p>
+  <b>Basicprice:</b>
+  <%= @trade_log.basicPrice %>
+</p>
+
+<p>
+  <b>Noitem:</b>
+  <%= @trade_log.noItem %>
+</p>
+
+<p>
+  <b>Buyvaluejpy:</b>
+  <%= @trade_log.buyValueJPY %>
+</p>
+
+<p>
+  <b>Buyvalueforeign:</b>
+  <%= @trade_log.buyValueForeign %>
+</p>
+
+<p>
+  <b>Sellvaluejpy:</b>
+  <%= @trade_log.sellValueJPY %>
+</p>
+
+<p>
+  <b>Sellvalueforeign:</b>
+  <%= @trade_log.sellValueForeign %>
+</p>
+
+<p>
+  <b>Dividendvaluejpy:</b>
+  <%= @trade_log.dividendValueJPY %>
+</p>
+
+<p>
+  <b>Dividendvalueforeign:</b>
+  <%= @trade_log.dividendValueForeign %>
+</p>
+
+
+<%= link_to 'Edit', edit_trade_log_path(@trade_log) %> |
+<%= link_to 'Back', trade_logs_path %>

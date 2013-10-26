@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @account_tran.date %>
+</p>
+
+<p>
+  <b>Income:</b>
+  <%= @account_tran.income %>
+</p>
+
+<p>
+  <b>Expenditure:</b>
+  <%= @account_tran.expenditure %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @account_tran.memo %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_tran_path(@account_tran) %> |
+<%= link_to 'Back', account_trans_path %>

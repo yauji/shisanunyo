@@ -1,0 +1,29 @@
+<h1>Listing account_trans</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Income</th>
+    <th>Expenditure</th>
+    <th>Memo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @account_trans.each do |account_tran| %>
+  <tr>
+    <td><%= account_tran.date %></td>
+    <td><%= account_tran.income %></td>
+    <td><%= account_tran.expenditure %></td>
+    <td><%= account_tran.memo %></td>
+    <td><%= link_to 'Show', account_tran %></td>
+    <td><%= link_to 'Edit', edit_account_tran_path(account_tran) %></td>
+    <td><%= link_to 'Destroy', account_tran, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Account tran', new_account_tran_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@account_tran) do |f| %>
+  <% if @account_tran.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account_tran.errors.count, "error") %> prohibited this account_tran from being saved:</h2>
+
+      <ul>
+      <% @account_tran.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :income %><br />
+    <%= f.text_field :income %>
+  </div>
+  <div class="field">
+    <%= f.label :expenditure %><br />
+    <%= f.text_field :expenditure %>
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_area :memo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

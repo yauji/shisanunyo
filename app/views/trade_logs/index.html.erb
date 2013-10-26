@@ -1,0 +1,41 @@
+<h1>Listing trade_logs</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Basicprice</th>
+    <th>Noitem</th>
+    <th>Buyvaluejpy</th>
+    <th>Buyvalueforeign</th>
+    <th>Sellvaluejpy</th>
+    <th>Sellvalueforeign</th>
+    <th>Dividendvaluejpy</th>
+    <th>Dividendvalueforeign</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trade_logs.each do |trade_log| %>
+  <tr>
+    <td><%= trade_log.date %></td>
+    <td><%= trade_log.type %></td>
+    <td><%= trade_log.basicPrice %></td>
+    <td><%= trade_log.noItem %></td>
+    <td><%= trade_log.buyValueJPY %></td>
+    <td><%= trade_log.buyValueForeign %></td>
+    <td><%= trade_log.sellValueJPY %></td>
+    <td><%= trade_log.sellValueForeign %></td>
+    <td><%= trade_log.dividendValueJPY %></td>
+    <td><%= trade_log.dividendValueForeign %></td>
+    <td><%= link_to 'Show', trade_log %></td>
+    <td><%= link_to 'Edit', edit_trade_log_path(trade_log) %></td>
+    <td><%= link_to 'Destroy', trade_log, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trade log', new_trade_log_path %>

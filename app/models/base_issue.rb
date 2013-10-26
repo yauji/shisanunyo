@@ -8,6 +8,8 @@ end
 
 class UnfixIssue < BaseIssue
   attr_accessible :noItem
+
+  has_many :trade_logs
 end
 
 
