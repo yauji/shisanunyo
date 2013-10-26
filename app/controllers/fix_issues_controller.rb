@@ -1,0 +1,2 @@
+class FixIssuesController < ApplicationController
+end

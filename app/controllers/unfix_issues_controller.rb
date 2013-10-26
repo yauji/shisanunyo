@@ -1,0 +1,2 @@
+class UnfixIssuesController < ApplicationController
+end

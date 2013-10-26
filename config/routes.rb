@@ -9,6 +9,10 @@ Shisanunyo::Application.routes.draw do
 
 
   resources :base_issues
+  resources :fix_issues
+  resources :unfix_issues
+
+
 
 
   # The priority is based upon order of creation:
