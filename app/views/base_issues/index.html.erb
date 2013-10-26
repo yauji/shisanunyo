@@ -1,0 +1,47 @@
+<h1>Listing base_issues</h1>
+
+<table>
+  <tr>
+    <th>Basecurrency</th>
+    <th>Principaljpy</th>
+    <th>Principalforeign</th>
+    <th>Status</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Enddate</th>
+    <th>Valuejpy</th>
+    <th>Valueforeign</th>
+    <th>Exchangerate</th>
+    <th>Interestrate</th>
+    <th>Duration</th>
+    <th>Noitem</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @base_issues.each do |base_issue| %>
+  <tr>
+    <td><%= base_issue.baseCurrency %></td>
+    <td><%= base_issue.principalJPY %></td>
+    <td><%= base_issue.principalForeign %></td>
+    <td><%= base_issue.status %></td>
+    <td><%= base_issue.name %></td>
+    <td><%= base_issue.date %></td>
+    <td><%= base_issue.endDate %></td>
+    <td><%= base_issue.valueJPY %></td>
+    <td><%= base_issue.valueForeign %></td>
+    <td><%= base_issue.exchangeRate %></td>
+    <td><%= base_issue.interestRate %></td>
+    <td><%= base_issue.duration %></td>
+    <td><%= base_issue.noItem %></td>
+    <td><%= link_to 'Show', base_issue %></td>
+    <td><%= link_to 'Edit', edit_base_issue_path(base_issue) %></td>
+    <td><%= link_to 'Destroy', base_issue, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Base issue', new_base_issue_path %>

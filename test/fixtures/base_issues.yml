@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  baseCurrency: MyString
+  principalJPY: MyString
+  principalForeign: 1.5
+  status: MyString
+  name: MyString
+  date: 2013-10-26 00:34:17
+  endDate: 2013-10-26 00:34:17
+  valueJPY: 1
+  valueForeign: 1.5
+  exchangeRate: 1.5
+  interestRate: 1.5
+  duration: 1
+  noItem: 1
+
+two:
+  baseCurrency: MyString
+  principalJPY: MyString
+  principalForeign: 1.5
+  status: MyString
+  name: MyString
+  date: 2013-10-26 00:34:17
+  endDate: 2013-10-26 00:34:17
+  valueJPY: 1
+  valueForeign: 1.5
+  exchangeRate: 1.5
+  interestRate: 1.5
+  duration: 1
+  noItem: 1

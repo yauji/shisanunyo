@@ -1,0 +1,69 @@
+<%= form_for(@base_issue) do |f| %>
+  <% if @base_issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@base_issue.errors.count, "error") %> prohibited this base_issue from being saved:</h2>
+
+      <ul>
+      <% @base_issue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :baseCurrency %><br />
+    <%= f.text_field :baseCurrency %>
+  </div>
+  <div class="field">
+    <%= f.label :principalJPY %><br />
+    <%= f.text_field :principalJPY %>
+  </div>
+  <div class="field">
+    <%= f.label :principalForeign %><br />
+    <%= f.text_field :principalForeign %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :endDate %><br />
+    <%= f.datetime_select :endDate %>
+  </div>
+  <div class="field">
+    <%= f.label :valueJPY %><br />
+    <%= f.number_field :valueJPY %>
+  </div>
+  <div class="field">
+    <%= f.label :valueForeign %><br />
+    <%= f.text_field :valueForeign %>
+  </div>
+  <div class="field">
+    <%= f.label :exchangeRate %><br />
+    <%= f.text_field :exchangeRate %>
+  </div>
+  <div class="field">
+    <%= f.label :interestRate %><br />
+    <%= f.text_field :interestRate %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br />
+    <%= f.number_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :noItem %><br />
+    <%= f.number_field :noItem %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
