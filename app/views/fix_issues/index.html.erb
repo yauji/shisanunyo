@@ -1,0 +1,45 @@
+<h2>Listing fix_issues</h2>
+
+<table>
+  <tr>
+    <th>Basecurrency</th>
+    <th>Principaljpy</th>
+    <th>Principalforeign</th>
+    <th>Status</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Enddate</th>
+    <th>Valuejpy</th>
+    <th>Valueforeign</th>
+    <th>Exchangerate</th>
+    <th>Interestrate</th>
+    <th>Duration</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fix_issues.each do |fix_issue| %>
+  <tr>
+    <td><%= fix_issue.baseCurrency %></td>
+    <td><%= fix_issue.principalJPY %></td>
+    <td><%= fix_issue.principalForeign %></td>
+    <td><%= fix_issue.status %></td>
+    <td><%= fix_issue.name %></td>
+    <td><%= fix_issue.date %></td>
+    <td><%= fix_issue.endDate %></td>
+    <td><%= fix_issue.valueJPY %></td>
+    <td><%= fix_issue.valueForeign %></td>
+    <td><%= fix_issue.exchangeRate %></td>
+    <td><%= fix_issue.interestRate %></td>
+    <td><%= fix_issue.duration %></td>
+    <td><%= link_to 'Show', fix_issue %></td>
+    <td><%= link_to 'Edit', edit_fix_issue_path(fix_issue) %></td>
+    <td><%= link_to 'Destroy', fix_issue, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fix issue', new_fix_issue_path %>

@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Basecurrency:</b>
+  <%= @base_issue.baseCurrency %>
+</p>
+
+<p>
+  <b>Principaljpy:</b>
+  <%= @base_issue.principalJPY %>
+</p>
+
+<p>
+  <b>Principalforeign:</b>
+  <%= @base_issue.principalForeign %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @base_issue.status %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @base_issue.name %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @base_issue.date %>
+</p>
+
+<p>
+  <b>Enddate:</b>
+  <%= @base_issue.endDate %>
+</p>
+
+<p>
+  <b>Valuejpy:</b>
+  <%= @base_issue.valueJPY %>
+</p>
+
+<p>
+  <b>Valueforeign:</b>
+  <%= @base_issue.valueForeign %>
+</p>
+
+<p>
+  <b>Exchangerate:</b>
+  <%= @base_issue.exchangeRate %>
+</p>
+
+<p>
+  <b>Interestrate:</b>
+  <%= @base_issue.interestRate %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @base_issue.duration %>
+</p>
+
+<p>
+  <b>Noitem:</b>
+  <%= @base_issue.noItem %>
+</p>
+
+
+<%= link_to 'Edit', edit_base_issue_path(@base_issue) %> |
+<%= link_to 'Back', base_issues_path %>
