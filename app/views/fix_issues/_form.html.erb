@@ -1,10 +1,10 @@
-<%= form_for(@base_issue) do |f| %>
-  <% if @base_issue.errors.any? %>
+<%= form_for(@fix_issue) do |f| %>
+  <% if @fix_issue.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@base_issue.errors.count, "error") %> prohibited this base_issue from being saved:</h2>
+      <h2><%= pluralize(@fix_issue.errors.count, "error") %> prohibited this fix_issue from being saved:</h2>
 
       <ul>
-      <% @base_issue.errors.full_messages.each do |msg| %>
+      <% @fix_issue.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,8 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :baseCurrency %><br />
-    <%= f.text_field :baseCurrency %>
+    <%= f.label :baseCurrency %>
+    <%= collection_select(:fix_issue, :baseCurrency,
+			[[:JPY, 'JPY'], 
+			[:AUD, 'AUD'],
+			[:USD, 'USD'],
+			[:ERU, 'EUR'],
+			],
+			:first,
+			:last)
+			  %>
+    
   </div>
   <div class="field">
     <%= f.label :principalJPY %><br />
@@ -58,10 +67,6 @@
   <div class="field">
     <%= f.label :duration %><br />
     <%= f.number_field :duration %>
-  </div>
-  <div class="field">
-    <%= f.label :noItem %><br />
-    <%= f.number_field :noItem %>
   </div>
   <div class="actions">
     <%= f.submit %>

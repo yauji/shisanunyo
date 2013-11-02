@@ -10,11 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026004731) do
+ActiveRecord::Schema.define(:version => 20131102004014) do
+
+  create_table "account_trans", :force => true do |t|
+    t.datetime "date"
+    t.float    "income"
+    t.float    "expenditure"
+    t.text     "memo"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "accounts", :force => true do |t|
+    t.string   "currency"
+    t.float    "balance"
+    t.float    "exchangeRate"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "base_issues", :force => true do |t|
     t.string   "baseCurrency"
-    t.string   "principalJPY"
     t.float    "principalForeign"
     t.string   "status"
     t.string   "name"
@@ -29,6 +45,22 @@ ActiveRecord::Schema.define(:version => 20131026004731) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "type"
+    t.integer  "principalJPY"
+  end
+
+  create_table "trade_logs", :force => true do |t|
+    t.datetime "date"
+    t.string   "type"
+    t.integer  "basicPrice"
+    t.integer  "noItem"
+    t.integer  "buyValueJPY"
+    t.float    "buyValueForeign"
+    t.integer  "sellValueJPY"
+    t.float    "sellValueForeign"
+    t.integer  "dividendValueJPY"
+    t.float    "dividendValueForeign"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
 end
