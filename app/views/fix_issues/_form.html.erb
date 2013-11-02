@@ -1,3 +1,5 @@
+<%= javascript_include_tag "issue" %>
+
 <%= form_for(@fix_issue) do |f| %>
   <% if @fix_issue.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +13,20 @@
     </div>
   <% end %>
 
+	<select id="fi_requestType">
+		<option value="jpy2fc">JPY to Forign Currency</option>
+		<option value="fc2jpy">Forign Currency to JPY</option>
+		<option value="teiki_jpy">定期預金（円）</option>
+		<option value="teiki_fc">定期預金（外貨）</option>
+		<option value="shikumi_jpy2fc">仕組預金（円→外貨）</option>
+		<option value="shikumi_fc2jpy">仕組預金（外貨→円）</option>
+		<option value="shikumi_fc2fc">仕組預金（外貨→外貨）/option>
+	</select>
+
+
   <table>
-  	<tbody>
-  		<tr>
+  	<tbody id="fi_formbody">
+  		<tr id="fi_trName">
   			<td>
   				<%= f.label :name %><br />
   			</td>
@@ -21,7 +34,7 @@
   				<%= f.text_field :name %>
   			</td>
   		</tr>
-  		<tr>
+  		<tr id="fi_trBaseCurrency">
   			<td>
     <%= f.label :baseCurrency %>
   			</td>
@@ -39,7 +52,7 @@
   				
   			</td>
   		</tr>
-  		<tr>
+  		<tr id="fi_trPrincipalJPY">
   			<td>
     <%= f.label :principalJPY %><br />
   				
@@ -49,7 +62,7 @@
   				
   			</td>
   		</tr>
-  		<tr>
+  		<tr id="fi_trPrincipalForeign">
   			<td>
     <%= f.label :principalForeign %><br />
   				
@@ -58,7 +71,8 @@
     <%= f.text_field :principalForeign %>
   			</td>
   		</tr>
-  		<tr>
+  		<tr id="fi_trDate">
+
   			<td>
     <%= f.label :date %><br />
   				
@@ -68,62 +82,59 @@
   				
   			</td>
   		</tr>
-  		<tr>
+  		<tr id="fi_trValueJPY">
+
   			<td>
-    <%= f.label :endDate %><br />
+    <%= f.label :valueJPY %><br />
   				
   			</td>
   			<td>
-    <%= f.date_select :endDate %>
-  				
-  			</td>
-  		</tr>
-  		<tr>
-  			<td>
-  				
-  			</td>
-  			<td>
+    <%= f.number_field :valueJPY %>
   				
   			</td>
   		</tr>
-  		<tr>
+  		<tr id="fi_trValueForeign">
   			<td>
+    <%= f.label :valueForeign %><br />
   				
   			</td>
   			<td>
+    <%= f.text_field :valueForeign %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trExchangeRate">
+  			<td>
+    <%= f.label :exchangeRate %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.text_field :exchangeRate %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trInterestRate">
+  			<td>
+    <%= f.label :interestRate %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.text_field :interestRate %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trDuration">
+  			<td>
+    <%= f.label :duration %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.number_field :duration %>
   				
   			</td>
   		</tr>
   	</tbody>
   </table>
-
-
-  <div class="field">
-  </div>
-  <div class="field">
-  </div>
-  <div class="field">
-  </div>
-  <div class="field">
-    <%= f.label :valueJPY %><br />
-    <%= f.number_field :valueJPY %>
-  </div>
-  <div class="field">
-    <%= f.label :valueForeign %><br />
-    <%= f.text_field :valueForeign %>
-  </div>
-  <div class="field">
-    <%= f.label :exchangeRate %><br />
-    <%= f.text_field :exchangeRate %>
-  </div>
-  <div class="field">
-    <%= f.label :interestRate %><br />
-    <%= f.text_field :interestRate %>
-  </div>
-  <div class="field">
-    <%= f.label :duration %><br />
-    <%= f.number_field :duration %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
