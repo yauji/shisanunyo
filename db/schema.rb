@@ -10,15 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131102004014) do
+ActiveRecord::Schema.define(:version => 20131102011121) do
 
   create_table "account_trans", :force => true do |t|
-    t.datetime "date"
     t.float    "income"
     t.float    "expenditure"
     t.text     "memo"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.date     "date"
   end
 
   create_table "accounts", :force => true do |t|
@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(:version => 20131102004014) do
     t.float    "principalForeign"
     t.string   "status"
     t.string   "name"
-    t.datetime "date"
-    t.datetime "endDate"
     t.integer  "valueJPY"
     t.float    "valueForeign"
     t.float    "exchangeRate"
@@ -46,10 +44,11 @@ ActiveRecord::Schema.define(:version => 20131102004014) do
     t.datetime "updated_at",       :null => false
     t.string   "type"
     t.integer  "principalJPY"
+    t.date     "date"
+    t.date     "endDate"
   end
 
   create_table "trade_logs", :force => true do |t|
-    t.datetime "date"
     t.string   "type"
     t.integer  "basicPrice"
     t.integer  "noItem"
@@ -61,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20131102004014) do
     t.float    "dividendValueForeign"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.date     "date"
   end
 
 end

@@ -11,8 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <table>
+  	<tbody>
+  		<tr>
+  			<td>
+  				<%= f.label :name %><br />
+  			</td>
+  			<td>
+  				<%= f.text_field :name %>
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
     <%= f.label :baseCurrency %>
+  			</td>
+  			<td>
     <%= collection_select(:fix_issue, :baseCurrency,
 			[[:JPY, 'JPY'], 
 			[:AUD, 'AUD'],
@@ -22,31 +35,74 @@
 			:first,
 			:last)
 			  %>
-    
-  </div>
-  <div class="field">
+  				
+  				
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
     <%= f.label :principalJPY %><br />
-    <%= f.text_field :principalJPY %>
-  </div>
-  <div class="field">
+  				
+  			</td>
+  			<td>
+    <%= f.number_field :principalJPY %>
+  				
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
     <%= f.label :principalForeign %><br />
+  				
+  			</td>
+  			<td>
     <%= f.text_field :principalForeign %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
     <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
+  				
+  			</td>
+  			<td>
+    <%= f.date_select :date %>
+  				
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
+    <%= f.label :endDate %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.date_select :endDate %>
+  				
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
+  				
+  			</td>
+  			<td>
+  				
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
+  				
+  			</td>
+  			<td>
+  				
+  			</td>
+  		</tr>
+  	</tbody>
+  </table>
+
+
+  <div class="field">
   </div>
   <div class="field">
-    <%= f.label :endDate %><br />
-    <%= f.datetime_select :endDate %>
+  </div>
+  <div class="field">
   </div>
   <div class="field">
     <%= f.label :valueJPY %><br />
