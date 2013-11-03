@@ -25,7 +25,7 @@ class BaseIssuesController < ApplicationController
   # GET /base_issues/new.json
   def new
     @base_issue = BaseIssue.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @base_issue }

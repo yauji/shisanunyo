@@ -26,6 +26,7 @@ $(function(){
 	$("#fi_trPrincipalJPY").css("display", "table-row");
 	$("#fi_trValueForeign").css("display", "table-row");
 	$("#fi_trExchangeRate").css("display", "table-row");
+	$("#fi_trMemo").css("display", "table-row");
 
 //
 	
