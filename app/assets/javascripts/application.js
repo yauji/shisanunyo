@@ -36,6 +36,7 @@ $(function(){
 	$("#fi_trName").css("display", "table-row");
 	$("#fi_trBaseCurrency").css("display", "table-row");
 	$("#fi_trDate").css("display", "table-row");
+	$("#fi_trMemo").css("display", "table-row");
 
     	if($("#fi_requestType").val() == "jpy2fc"){
 	$("#fi_trPrincipalJPY").css("display", "table-row");

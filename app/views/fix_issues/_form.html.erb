@@ -12,6 +12,9 @@
       </ul>
     </div>
   <% end %>
+  
+  <%= flash[:error] %>
+  <br/>
 
 	<%= select_tag 'fi_requestType', options_for_select(
 	[

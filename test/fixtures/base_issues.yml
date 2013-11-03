@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  type: FixIssue
   baseCurrency: MyString
   principalJPY: MyString
   principalForeign: 1.5
@@ -14,6 +15,8 @@ one:
   interestRate: 1.5
   duration: 1
   noItem: 1
+  memo: hoge
+  
 
 two:
   baseCurrency: MyString
@@ -29,3 +32,4 @@ two:
   interestRate: 1.5
   duration: 1
   noItem: 1
+  memo: hoge

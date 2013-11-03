@@ -43,16 +43,43 @@ class FixIssuesController < ApplicationController
   # POST /fix_issues
   # POST /fix_issues.json
   def create
-    p "------------------"
-    p params
-    
-    
     requestType = params[:fi_requestType]
-    issue = params[:fix_issue]
-    
-    
-    
+
     @fix_issue = FixIssue.new(params[:fix_issue])
+    
+    if requestType == "jpy2fc" then
+      @fix_issue.status = IssueStatus::FINISHED
+      
+      #update account ----
+      account = 
+        Account.find(:first, :conditions => {:currency => @fix_issue.baseCurrency})
+        
+      if account.nil? then
+        redirect_to new_fix_issue_path
+        flash[:error] = "There is no account with " + @fix_issue.baseCurrency
+        return      
+      end
+            
+      balance = account.balance + @fix_issue.valueForeign
+      account.update_attribute  :balance , balance
+      
+      #add account trans ----
+      accountTran = AccountTran.new(
+        :date => @fix_issue.date,
+        :income => @fix_issue.valueForeign)
+      accountTran.account = account
+      accountTran.save
+
+      
+    elsif requestType == "fc2jpy" then
+    elsif requestType == "teiki_jpy" then
+    elsif requestType == "teiki_fc" then
+    elsif requestType == "shikumi_jpy2fc" then
+    elsif requestType == "shikumi_fc2jpy" then
+    elsif requestType == "shikumi_fc2fc" then
+    end
+    
+    
 
     respond_to do |format|
       if @fix_issue.save

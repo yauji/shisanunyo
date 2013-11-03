@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  currency: MyString
-  balance: 1.5
-  exchangeRate: 1.5
+aud:
+  currency: AUD
+  balance: 0
+  exchangeRate: 93.2
+  memo: hoge
 
-two:
-  currency: MyString
-  balance: 1.5
-  exchangeRate: 1.5
+usd:
+  currency: USD
+  balance: 0
+  exchangeRate: 98.1
+  memo: hoge
