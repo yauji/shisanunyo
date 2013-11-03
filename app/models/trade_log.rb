@@ -1,3 +1,3 @@
 class TradeLog < ActiveRecord::Base
-  attr_accessible :basicPrice, :buyValueForeign, :buyValueJPY, :date, :dividendValueForeign, :dividendValueJPY, :noItem, :sellValueForeign, :sellValueJPY, :type
+  attr_accessible :basicPrice, :buyValueForeign, :buyValueJPY, :date, :dividendValueForeign, :dividendValueJPY, :noItem, :sellValueForeign, :sellValueJPY, :type, :memo
 end

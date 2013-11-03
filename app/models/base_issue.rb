@@ -1,5 +1,5 @@
 class BaseIssue < ActiveRecord::Base
-  attr_accessible :baseCurrency, :name, :principalForeign, :principalJPY, :status
+  attr_accessible :baseCurrency, :name, :principalForeign, :principalJPY, :status, :memo
 end
 
 class FixIssue < BaseIssue

@@ -13,15 +13,17 @@
     </div>
   <% end %>
 
-	<select id="fi_requestType">
-		<option value="jpy2fc">JPY to Forign Currency</option>
-		<option value="fc2jpy">Forign Currency to JPY</option>
-		<option value="teiki_jpy">定期預金（円）</option>
-		<option value="teiki_fc">定期預金（外貨）</option>
-		<option value="shikumi_jpy2fc">仕組預金（円→外貨）</option>
-		<option value="shikumi_fc2jpy">仕組預金（外貨→円）</option>
-		<option value="shikumi_fc2fc">仕組預金（外貨→外貨）/option>
-	</select>
+	<%= select_tag 'fi_requestType', options_for_select(
+	[
+		["JPY to Forign Currency","jpy2fc"],
+		["Forign Currency to JPY","fc2jpy"],
+		["定期預金（円）","teiki_jpy"],
+		["定期預金（外貨）","teiki_fc"],
+		["仕組預金（円→外貨）","shikumi_jpy2fc"],
+		["仕組預金（外貨→円）","shikumi_fc2jpy"],
+		["仕組預金（外貨→外貨）","shikumi_fc2fc"],
+	] )
+	%>
 
 
   <table>

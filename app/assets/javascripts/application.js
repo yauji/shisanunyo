@@ -19,6 +19,15 @@ $(function(){
 	// $("#fi_formbody > *").css("color", "red");
 	$("#fi_formbody > *").css("display", "none");
 	  //  	$("#fi_trName").css("display", "none");
+	  
+	  	$("#fi_trName").css("display", "table-row");
+	$("#fi_trBaseCurrency").css("display", "table-row");
+	$("#fi_trDate").css("display", "table-row");
+	$("#fi_trPrincipalJPY").css("display", "table-row");
+	$("#fi_trValueForeign").css("display", "table-row");
+	$("#fi_trExchangeRate").css("display", "table-row");
+
+//
 	
     $("#fi_requestType").change(function(){
 	$("#fi_formbody > *").css("display", "none");

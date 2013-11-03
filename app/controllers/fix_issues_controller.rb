@@ -42,6 +42,15 @@ class FixIssuesController < ApplicationController
   # POST /fix_issues
   # POST /fix_issues.json
   def create
+    p "------------------"
+    p params
+    
+    
+    requestType = params[:fi_requestType]
+    issue = params[:fix_issue]
+    
+    
+    
     @fix_issue = FixIssue.new(params[:fix_issue])
 
     respond_to do |format|

@@ -43,8 +43,8 @@ test:
   encoding: unicode
   database: shisanunyo_test
   pool: 5
-  username: shisanunyo
-  password:
+  username: postgres
+  password: postgres
 
 production:
   adapter: postgresql
