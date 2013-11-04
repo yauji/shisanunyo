@@ -2,13 +2,14 @@
 
 one:
   type: FixIssue
-  baseCurrency: MyString
-  principalJPY: MyString
-  principalForeign: 1.5
-  status: MyString
-  name: MyString
+  principalCurrency: JPY
+  baseCurrency: AUD
+  principalJPY: 10000
+  principalForeign: 90.1
+  status: active
+  name: JPY->AUD
   date: 2013-10-26 00:34:17
-  endDate: 2013-10-26 00:34:17
+  endDate: 
   valueJPY: 1
   valueForeign: 1.5
   exchangeRate: 1.5
@@ -19,10 +20,12 @@ one:
   
 
 two:
-  baseCurrency: MyString
-  principalJPY: MyString
+  type: FixIssue
+  principalCurrency: JPY
+  baseCurrency: JPY
+  principalJPY: 123
   principalForeign: 1.5
-  status: MyString
+  status: active
   name: MyString
   date: 2013-10-26 00:34:17
   endDate: 2013-10-26 00:34:17

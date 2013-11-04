@@ -5,4 +5,11 @@ class ApplicationController < ActionController::Base
     ACTIVE = 'active'
     FINISHED = 'finished'
   end
+
+  module Currency
+    JPY = 'JPY'
+    USD = 'USD'
+    AUD = 'AUD'
+    EUR = 'EUR'
+  end
 end

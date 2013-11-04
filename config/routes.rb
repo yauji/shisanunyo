@@ -11,6 +11,8 @@ Shisanunyo::Application.routes.draw do
   resources :base_issues
   resources :fix_issues
   resources :unfix_issues
+  
+  match "performances", :controller => :performances, :action => :index
 
 
 
