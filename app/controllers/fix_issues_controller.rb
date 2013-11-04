@@ -149,9 +149,48 @@ class FixIssuesController < ApplicationController
       end
       
     elsif requestType == "teiki_fc" then
+      @fix_issue.status = IssueStatus::ACTIVE
+      
+      #check input---
+      isError = false        
+      if @fix_issue.principalForeign.nil? then
+        flash[:error] += "Principal Foreign is mandatory. "
+        isError = true
+      end
+      if @fix_issue.interestRate.nil? then
+        flash[:error] += "interest rate is mandatory. "
+        isError = true
+      end
+      if @fix_issue.duration.nil? then
+        flash[:error] += "duration is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_fix_issue_path
+        return
+      end
     elsif requestType == "shikumi_jpy2fc" then
+      @fix_issue.status = IssueStatus::ACTIVE
+      
+      #check input---
+      isError = false        
+      if @fix_issue.principalJPY.nil? then
+        flash[:error] += "Principal JPY is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_fix_issue_path
+        return
+      end
+      
     elsif requestType == "shikumi_fc2jpy" then
+      updateAccount 
+      
     elsif requestType == "shikumi_fc2fc" then
+      updateAccount 
+
     end
     
     
@@ -165,6 +204,46 @@ class FixIssuesController < ApplicationController
         format.json { render :json => @fix_issue.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def updateAccount 
+      @fix_issue.status = IssueStatus::ACTIVE
+      
+      # p "----------------"
+      # p @fix_issue
+      
+      #update account ----
+      account = 
+        Account.find(:first, :conditions => {:currency => @fix_issue.principalCurrency})
+        
+      #check input---
+      #check input---
+      isError = false        
+      if account.nil? then
+        flash[:error] = "There is no account with " + @fix_issue.principalCurrency + ". "
+        isError = true
+      end
+      if @fix_issue.principalForeign.nil? then
+        flash[:error] += "Principal Foreign is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_fix_issue_path
+        return
+      end
+
+
+      balance = account.balance - @fix_issue.principalForeign
+      account.update_attribute :balance , balance
+      
+      #add account trans ----
+      accountTran = AccountTran.new(
+        :date => @fix_issue.date,
+        :expenditure => @fix_issue.principalForeign)
+      accountTran.account = account
+      accountTran.save
+    
   end
 
   # PUT /fix_issues/1

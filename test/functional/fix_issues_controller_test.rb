@@ -155,4 +155,95 @@ class FixIssuesControllerTest < ActionController::TestCase
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
 
+  test "should create teiki fc" do
+    assert_difference('FixIssue.count') do
+      post :create, "fi_requestType"=>"teiki_fc", 
+        "fix_issue"=>{ 
+           "principalCurrency"=>"AUD",
+           "baseCurrency"=>"AUD",
+           "memo"=>"teiki fc 123",
+           "name"=>"teiki fc", 
+        # "principalJPY"=>"11000", 
+        "principalForeign"=>"200", 
+        "duration"=>"24", 
+        # "exchangeRate"=>"93", 
+        "date(1i)"=>"2013", 
+        "date(2i)"=>"9", 
+        "date(3i)"=>"3", 
+        "interestRate"=>"0.5", 
+        # "valueForeign"=>"930", 
+        # "valueJPY"=>"80000",
+        }
+    end
+
+    fi = FixIssue.find(:first, 
+      :conditions => ['memo = ?', 'teiki fc 123'])
+
+    # p fi
+    assert_equal 200, fi.principalForeign
+
+    #assert_redirected_to base_issue_path(assigns(:base_issue))
+  end
+
+  test "should create shikumi_jpy2fc" do
+    assert_difference('FixIssue.count') do
+      post :create, "fi_requestType"=>"shikumi_jpy2fc", 
+        "fix_issue"=>{ 
+           "principalCurrency"=>"JPY",
+           # "baseCurrency"=>"USD",
+           "memo"=>"shikumi jpy2fc 123",
+           "name"=>"shikumi jpy2fc", 
+        "principalJPY"=>"13000", 
+        # "principalForeign"=>"200", 
+        # "duration"=>"24", 
+        "exchangeRate"=>"93", 
+        "date(1i)"=>"2013", 
+        "date(2i)"=>"8", 
+        "date(3i)"=>"3", 
+        # "interestRate"=>"0.5", 
+        # "valueForeign"=>"930", 
+        # "valueJPY"=>"80000",
+        }
+    end
+
+    fi = FixIssue.find(:first, 
+      :conditions => ['memo = ?', 'shikumi jpy2fc 123'])
+
+    # p fi
+    assert_equal 13000, fi.principalJPY
+
+    #assert_redirected_to base_issue_path(assigns(:base_issue))
+  end
+
+#    ["仕組預金（外貨→円）","shikumi_fc2jpy"],
+  test "should create shikumi_fc2fc" do
+    assert_difference('FixIssue.count') do
+      post :create, "fi_requestType"=>"shikumi_fc2fc", 
+        "fix_issue"=>{ 
+           "principalCurrency"=>"AUD",
+           "baseCurrency"=>"USD",
+           "memo"=>"shikumi fc2fc 123",
+           "name"=>"shikumi fc2fc", 
+        # "principalJPY"=>"13000", 
+        "principalForeign"=>"300", 
+        # "duration"=>"24", 
+        "exchangeRate"=>"0.9", 
+        "date(1i)"=>"2013", 
+        "date(2i)"=>"7", 
+        "date(3i)"=>"3", 
+        # "interestRate"=>"0.5", 
+        # "valueForeign"=>"930", 
+        # "valueJPY"=>"80000",
+        }
+    end
+
+    fi = FixIssue.find(:first, 
+      :conditions => ['memo = ?', 'shikumi fc2fc 123'])
+
+    # p fi
+    assert_equal 300, fi.principalForeign
+
+    #assert_redirected_to base_issue_path(assigns(:base_issue))
+  end
+
 end
