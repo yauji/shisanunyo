@@ -27,8 +27,9 @@ class PerformancesController < ApplicationController
         @principal += tl.buyValueJPY
       end
     end
-    
 
+
+    #TODO creating...
     
     @value = 100
     

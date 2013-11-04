@@ -124,7 +124,30 @@ class FixIssuesController < ApplicationController
         :expenditure => @fix_issue.principalForeign)
       accountTran.account = account
       accountTran.save
+      
     elsif requestType == "teiki_jpy" then
+      @fix_issue.status = IssueStatus::ACTIVE
+      
+      #check input---
+      isError = false        
+      if @fix_issue.principalJPY.nil? then
+        flash[:error] += "Principal JPY is mandatory. "
+        isError = true
+      end
+      if @fix_issue.interestRate.nil? then
+        flash[:error] += "interest rate is mandatory. "
+        isError = true
+      end
+      if @fix_issue.duration.nil? then
+        flash[:error] += "duration is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_fix_issue_path
+        return
+      end
+      
     elsif requestType == "teiki_fc" then
     elsif requestType == "shikumi_jpy2fc" then
     elsif requestType == "shikumi_fc2jpy" then

@@ -64,9 +64,15 @@ $(function(){
 
     		
     	}else if($("#fi_requestType").val() == "teiki_jpy"){
-	$("#fi_trPrincipalJPY").css("display", "table-row");
-	$("#fi_trInterestRate").css("display", "table-row");
-	$("#fi_trDuration").css("display", "table-row");
+			$("#fi_trPrincipalJPY").css("display", "table-row");
+			$("#fi_trInterestRate").css("display", "table-row");
+			$("#fi_trDuration").css("display", "table-row");
+	
+			$("#fi_trPrincipalCurrency").val("JPY");
+			$("#fix_issue_principalCurrency").attr("disabled", true);
+			$("#fix_issue_baseCurrency").val("JPY");
+			$("#fix_issue_baseCurrency").attr("disabled", true);
+
     		
     	}else if($("#fi_requestType").val() == "teiki_fc"){
 	$("#fi_trPrincipalForeign").css("display", "table-row");

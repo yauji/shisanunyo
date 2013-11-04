@@ -112,9 +112,8 @@ class FixIssuesControllerTest < ActionController::TestCase
         # "interestRate"=>"", 
         # "valueForeign"=>"930", 
         "valueJPY"=>"80000",
-        "baseCurrency"=>"JPY"}
+        }
     end
-    
     
     account = 
       Account.find(:first, :conditions => {:currency => "AUD"})
@@ -122,8 +121,36 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     assert_equal -800, account.balance
     assert_equal 1, account.account_trans.count
-    
-    
+
+    #assert_redirected_to base_issue_path(assigns(:base_issue))
+  end
+
+  test "should create teiki jpy" do
+    assert_difference('FixIssue.count') do
+      post :create, "fi_requestType"=>"teiki_jpy", 
+        "fix_issue"=>{ 
+           "principalCurrency"=>"JPY",
+           "baseCurrency"=>"JPY",
+           "memo"=>"teiki jpy 123",
+           "name"=>"teiki jpy", 
+        "principalJPY"=>"11000", 
+        # "principalForeign"=>"800", 
+        "duration"=>"12", 
+        # "exchangeRate"=>"93", 
+        "date(1i)"=>"2013", 
+        "date(2i)"=>"10", 
+        "date(3i)"=>"3", 
+        "interestRate"=>"0.3", 
+        # "valueForeign"=>"930", 
+        # "valueJPY"=>"80000",
+        }
+    end
+
+    fi = FixIssue.find(:first, 
+      :conditions => ['memo = ?', 'teiki jpy 123'])
+
+    # p fi
+    assert_equal 11000, fi.principalJPY
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
