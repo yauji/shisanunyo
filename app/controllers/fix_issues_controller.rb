@@ -53,12 +53,28 @@ class FixIssuesController < ApplicationController
       #update account ----
       account = 
         Account.find(:first, :conditions => {:currency => @fix_issue.baseCurrency})
-        
+
+      #check input---
+      isError = false        
       if account.nil? then
-        redirect_to new_fix_issue_path
-        flash[:error] = "There is no account with " + @fix_issue.baseCurrency
-        return      
+        flash[:error] = "There is no account with " + @fix_issue.baseCurrency + ". "
+        isError = true
       end
+      if @fix_issue.principalJPY.nil? then
+        flash[:error] += "Principal JPY is mandatory. "
+        isError = true
+      end
+      if @fix_issue.valueForeign.nil? then
+        flash[:error] += "valueForeign JPY is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_fix_issue_path
+        return
+      end
+
+
             
       balance = account.balance + @fix_issue.valueForeign
       account.update_attribute  :balance , balance
@@ -72,6 +88,42 @@ class FixIssuesController < ApplicationController
 
       
     elsif requestType == "fc2jpy" then
+      @fix_issue.status = IssueStatus::FINISHED
+      
+      #update account ----
+      account = 
+        Account.find(:first, :conditions => {:currency => @fix_issue.principalCurrency})
+        
+      #check input---
+      isError = false        
+      if account.nil? then
+        flash[:error] = "There is no account with " + @fix_issue.principalCurrency + ". "
+        isError = true
+      end
+      if @fix_issue.principalForeign.nil? then
+        flash[:error] += "Principal Foreign is mandatory. "
+        isError = true
+      end
+      if @fix_issue.valueJPY.nil? then
+        flash[:error] += "valueJPY is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_fix_issue_path
+        return
+      end
+
+            
+      balance = account.balance - @fix_issue.principalForeign
+      account.update_attribute  :balance , balance
+      
+      #add account trans ----
+      accountTran = AccountTran.new(
+        :date => @fix_issue.date,
+        :expenditure => @fix_issue.principalForeign)
+      accountTran.account = account
+      accountTran.save
     elsif requestType == "teiki_jpy" then
     elsif requestType == "teiki_fc" then
     elsif requestType == "shikumi_jpy2fc" then

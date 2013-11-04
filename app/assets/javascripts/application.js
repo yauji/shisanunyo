@@ -21,6 +21,7 @@ $(function(){
 	  //  	$("#fi_trName").css("display", "none");
 	  
 	  	$("#fi_trName").css("display", "table-row");
+	$("#fi_trPrincipalCurrency").css("display", "table-row");
 	$("#fi_trBaseCurrency").css("display", "table-row");
 	$("#fi_trDate").css("display", "table-row");
 	$("#fi_trPrincipalJPY").css("display", "table-row");
@@ -34,19 +35,33 @@ $(function(){
 	$("#fi_formbody > *").css("display", "none");
 
 	$("#fi_trName").css("display", "table-row");
+	$("#fi_trPrincipalCurrency").css("display", "table-row");
 	$("#fi_trBaseCurrency").css("display", "table-row");
 	$("#fi_trDate").css("display", "table-row");
 	$("#fi_trMemo").css("display", "table-row");
+	
+			$("#fix_issue_principalCurrency").removeAttr("disabled");
+			$("#fix_issue_baseCurrency").removeAttr("disabled");
+
 
     	if($("#fi_requestType").val() == "jpy2fc"){
 	$("#fi_trPrincipalJPY").css("display", "table-row");
 	$("#fi_trValueForeign").css("display", "table-row");
 	$("#fi_trExchangeRate").css("display", "table-row");
+	
+			$("#fi_trPrincipalCurrency").val("JPY");
+			$("#fix_issue_principalCurrency").attr("disabled", true);
+			$("#fix_issue_baseCurrency").val("AUD");
 
+	
     	}else if($("#fi_requestType").val() == "fc2jpy"){
 	$("#fi_trPrincipalForeign").css("display", "table-row");
 	$("#fi_trValueJPY").css("display", "table-row");
 	$("#fi_trExchangeRate").css("display", "table-row");
+	
+			$("#fix_issue_baseCurrency").val("JPY");
+			$("#fix_issue_baseCurrency").attr("disabled", true);
+
     		
     	}else if($("#fi_requestType").val() == "teiki_jpy"){
 	$("#fi_trPrincipalJPY").css("display", "table-row");

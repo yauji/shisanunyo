@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103230844) do
+ActiveRecord::Schema.define(:version => 20131104034114) do
 
   create_table "account_trans", :force => true do |t|
     t.float    "income"
@@ -44,13 +44,14 @@ ActiveRecord::Schema.define(:version => 20131103230844) do
     t.float    "interestRate"
     t.integer  "duration"
     t.integer  "noItem"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "type"
     t.integer  "principalJPY"
     t.date     "date"
     t.date     "endDate"
     t.text     "memo"
+    t.string   "principalCurrency"
   end
 
   create_table "trade_logs", :force => true do |t|

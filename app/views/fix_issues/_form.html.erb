@@ -39,6 +39,22 @@
   				<%= f.text_field :name %>
   			</td>
   		</tr>
+  		<tr id="fi_trPrincipalCurrency">
+  			<td>
+    <%= f.label :principalCurrency %>
+  			</td>
+  			<td>
+    <%= collection_select(:fix_issue, :principalCurrency,
+			[[:JPY, 'JPY'], 
+			[:AUD, 'AUD'],
+			[:USD, 'USD'],
+			[:ERU, 'EUR'],
+			],
+			:first,
+			:last)
+			  %>
+  			</td>
+  		</tr>
   		<tr id="fi_trBaseCurrency">
   			<td>
     <%= f.label :baseCurrency %>

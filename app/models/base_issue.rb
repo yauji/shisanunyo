@@ -1,4 +1,5 @@
 class BaseIssue < ActiveRecord::Base
+  attr_accessible :principalCurrency
   attr_accessible :baseCurrency, :name, :principalForeign, :principalJPY, :status, :memo
 
 end
