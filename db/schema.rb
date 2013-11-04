@@ -10,16 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103050026) do
+ActiveRecord::Schema.define(:version => 20131103230844) do
 
   create_table "account_trans", :force => true do |t|
     t.float    "income"
     t.float    "expenditure"
     t.text     "memo"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.date     "date"
+    t.integer  "account_id",  :default => 1
   end
+
+  add_index "account_trans", ["account_id"], :name => "index_account_trans_on_account_id"
 
   create_table "accounts", :force => true do |t|
     t.string   "currency"
@@ -64,6 +67,9 @@ ActiveRecord::Schema.define(:version => 20131103050026) do
     t.datetime "updated_at",           :null => false
     t.date     "date"
     t.text     "memo"
+    t.integer  "base_issue_id"
   end
+
+  add_index "trade_logs", ["base_issue_id"], :name => "index_trade_logs_on_base_issue_id"
 
 end

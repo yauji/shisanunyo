@@ -31,15 +31,53 @@ class FixIssuesControllerTest < ActionController::TestCase
       Account.find(:first, :conditions => {:currency => "AUD"})
     assert_equal 930, account.balance
     
-    p account
+    # p account
     
     accountTrans =
       AccountTran.find(:all)
       
     # p account.account_trans
-    p accountTrans
+    # p accountTrans
       
-        
+       
+    ufi = UnfixIssue.new
+    ufi.save
+    # p ufi
+    
+    # p ufi
+    tl = TradeLog.new
+    tl.unfixIssue = ufi
+    # tl.baseIssue = ufi
+    tl.save
+    
+    # ufi.save
+    
+    # p tl
+    # p ufi
+    
+    p ufi.tradeLogs
+    
+    ufis = UnfixIssue.find(:all)  
+    # p ufis 
+    
+    # p ufi
+    # p ufi.tradeLogs
+    
+    tls = TradeLog.find(:all)
+    # p tls
+    
+    p "------------------"
+    ac = Account.new
+    ac.save
+    
+    p ac
+    
+    act = AccountTran.new
+    act.account = ac
+    act.save
+    
+    p act
+     
          
     # 
       # post :create, :base_issue => { :baseCurrency => @base_issue.baseCurrency, :date => @base_issue.date, :duration => @base_issue.duration, :endDate => @base_issue.endDate, :exchangeRate => @base_issue.exchangeRate, :interestRate => @base_issue.interestRate, :name => @base_issue.name, :noItem => @base_issue.noItem, :principalForeign => @base_issue.principalForeign, :principalJPY => @base_issue.principalJPY, :status => @base_issue.status, :valueForeign => @base_issue.valueForeign, :valueJPY => @base_issue.valueJPY }
