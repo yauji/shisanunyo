@@ -2,7 +2,7 @@
 
 aud:
   currency: AUD
-  balance: 0
+  balance: 12
   exchangeRate: 93.2
   memo: hoge
 

@@ -1,4 +1,5 @@
 require 'test_helper'
+# require 'application_controller'
 
 class FixIssuesControllerTest < ActionController::TestCase
   setup do
@@ -7,7 +8,7 @@ class FixIssuesControllerTest < ActionController::TestCase
     
   end
   
-  test "should create fix_issue of JPY->Forign Currency" do
+  test "should create fix_issue of JPY->Foreign Currency" do
     # fis = FixIssue.find(:all)
     # p fis
     
@@ -33,9 +34,9 @@ class FixIssuesControllerTest < ActionController::TestCase
     
     account = 
       Account.find(:first, :conditions => {:currency => "AUD"})
-    assert_equal 930, account.balance
+    assert_equal 942, account.balance
     
-    assert_equal 1, account.account_trans.count
+    assert_equal 2, account.account_trans.count
     
     # p account
 =begin   
@@ -94,7 +95,7 @@ class FixIssuesControllerTest < ActionController::TestCase
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
 
-  test "should create fix_issue of Forign Currency -> JPY" do
+  test "should create fix_issue of Foreign Currency -> JPY" do
     assert_difference('FixIssue.count') do
       post :create, "fi_requestType"=>"fc2jpy", 
         "fix_issue"=>{ 
@@ -119,8 +120,8 @@ class FixIssuesControllerTest < ActionController::TestCase
       Account.find(:first, :conditions => {:currency => "AUD"})
     # p account
 
-    assert_equal -800, account.balance
-    assert_equal 1, account.account_trans.count
+    assert_equal -788, account.balance
+    assert_equal 2, account.account_trans.count
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
@@ -155,6 +156,29 @@ class FixIssuesControllerTest < ActionController::TestCase
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
 
+  test "should end teiki jpy" do
+    @fi = base_issues(:teiki_jpy01)
+    
+    #end issue teiki
+    put :update, :id => @fi,
+      :type => "edit_end", 
+    :fix_issue => { 
+      # :duration => @base_issue.duration, 
+      :endDate => "2014-09-26", 
+      # :interestRate => @base_issue.interestRate,  
+      # :valueForeign => @base_issue.valueForeign, 
+      :valueJPY => "10500" }
+      
+    fi_after = FixIssue.find(@fi.id)
+    
+    # p fi_after
+
+    assert_equal "finished", fi_after.status
+    assert_equal 10500, fi_after.valueJPY
+    
+    assert_redirected_to fix_issue_path(assigns(:fix_issue))
+  end
+
   test "should create teiki fc" do
     assert_difference('FixIssue.count') do
       post :create, "fi_requestType"=>"teiki_fc", 
@@ -184,6 +208,41 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
+  
+  
+  
+  test "should end teiki fc" do
+    @fi = base_issues(:teiki_aud01)
+    
+    #end issue teiki
+    put :update, :id => @fi,
+      :type => "edit_end", 
+    :fix_issue => { 
+      # :duration => @base_issue.duration, 
+      :endDate => "2013-08-31", 
+      # :interestRate => @base_issue.interestRate,  
+      :valueForeign => "1050", 
+      # :valueJPY => "10500" 
+      }
+      
+    fi_after = FixIssue.find(@fi.id)
+    
+    # p fi_after
+
+    assert_equal "finished", fi_after.status
+    assert_equal 1050, fi_after.valueForeign
+    
+    account =
+        Account.find(:first, :conditions => {:currency => @fi.baseCurrency})
+
+    assert_equal 1062.0, account.balance
+    assert_equal 2, account.account_trans.count
+        
+    
+    assert_redirected_to fix_issue_path(assigns(:fix_issue))
+  end
+
+  
 
   test "should create shikumi_jpy2fc" do
     assert_difference('FixIssue.count') do
@@ -214,6 +273,66 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
+  
+  
+  test "should end shikumi_jpy2fc aud return" do
+    @fi = base_issues(:shikumi_jpyaud01)
+    
+    #end issue teiki
+    put :update, :id => @fi,
+      :type => "edit_end", 
+    :fix_issue => { 
+      # :duration => @base_issue.duration, 
+      :endDate => "2013-08-31", 
+      # :interestRate => @base_issue.interestRate,  
+      :valueForeign => "1060", 
+      # :valueJPY => "10500" 
+      }
+      
+    fi_after = FixIssue.find(@fi.id)
+    
+    # p fi_after
+
+    assert_equal "finished", fi_after.status
+    assert_equal 1060, fi_after.valueForeign
+    
+    account =
+        Account.find(:first, :conditions => {:currency => @fi.baseCurrency})
+
+    assert_equal 1072.0, account.balance
+    assert_equal 2, account.account_trans.count
+    
+    assert_redirected_to fix_issue_path(assigns(:fix_issue))
+  end
+
+
+  test "should end shikumi_jpy2fc jpy return" do
+    @fi = base_issues(:shikumi_jpyaud01)
+    
+    #end issue teiki
+    put :update, :id => @fi,
+      :type => "edit_end", 
+    :fix_issue => { 
+      # :duration => @base_issue.duration, 
+      :baseCurrency => "JPY", 
+      :endDate => "2013-08-31", 
+      # :interestRate => @base_issue.interestRate,  
+      # :valueForeign => "1060", 
+      :valueJPY => "10500" 
+      }
+      
+    fi_after = FixIssue.find(@fi.id)
+    
+    # p fi_after
+
+    assert_equal "finished", fi_after.status
+    assert_equal 10500, fi_after.valueJPY
+    
+    
+    assert_redirected_to fix_issue_path(assigns(:fix_issue))
+  end
+
+  
 
 #    ["仕組預金（外貨→円）","shikumi_fc2jpy"],
   test "should create shikumi_fc2fc" do

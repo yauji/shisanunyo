@@ -68,6 +68,7 @@ class FixIssuesController < ApplicationController
 
       #check input---
       isError = false        
+        flash[:error] = ""
       if account.nil? then
         flash[:error] = "There is no account with " + @fix_issue.baseCurrency + ". "
         isError = true
@@ -108,6 +109,7 @@ class FixIssuesController < ApplicationController
         
       #check input---
       isError = false        
+        flash[:error] = ""
       if account.nil? then
         flash[:error] = "There is no account with " + @fix_issue.principalCurrency + ". "
         isError = true
@@ -230,7 +232,8 @@ class FixIssuesController < ApplicationController
         
       #check input---
       #check input---
-      isError = false        
+      isError = false
+      flash[:error] = ""
       if account.nil? then
         flash[:error] = "There is no account with " + @fix_issue.principalCurrency + ". "
         isError = true
@@ -264,10 +267,48 @@ class FixIssuesController < ApplicationController
     @fix_issue = FixIssue.find(params[:id])
 
     if params[:type] == "edit_end" then
-      hoge
-      p "--------------------"
-      p params[:fix_issue]
-      @fix_issue.update_attribute(:status, IssueStatus::FINISHED)
+      params[:fix_issue][:status] = IssueStatus::FINISHED
+      
+      # if users change baseCurrency when edit_end
+      unless params[:fix_issue][:baseCurrency].nil? then
+        @fix_issue.baseCurrency = params[:fix_issue][:baseCurrency]
+      end
+      
+      if @fix_issue.baseCurrency != Currency::JPY then
+        #update account ----
+
+        account =
+        Account.find(:first, :conditions => {:currency => @fix_issue.baseCurrency})
+
+        #check input---
+        isError = false
+        flash[:error] = ""
+        if account.nil? then
+          flash[:error] = "There is no account with " + @fix_issue.baseCurrency + ". "
+        isError = true
+        end
+        if params[:fix_issue][:valueForeign].nil? then
+          flash[:error] += "value Foreign is mandatory. "
+        isError = true
+        end
+        
+
+        if isError then
+          redirect_to edit_end_fix_issue_path
+          return
+        end
+
+        balance = account.balance + params[:fix_issue][:valueForeign].to_f
+        account.update_attribute :balance , balance
+
+        #add account trans ----
+        accountTran = AccountTran.new(
+          :date => @fix_issue.endDate,
+          :income => @fix_issue.valueForeign)
+        accountTran.account = account
+        accountTran.save
+
+      end
       
     end
 
