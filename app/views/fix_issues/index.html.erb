@@ -1,5 +1,7 @@
 <h2>Listing fix_issues</h2>
 
+<%= flash[:error] %>
+
 <table>
   <tr>
     <th>Basecurrency</th>
@@ -14,6 +16,7 @@
     <th>Exchangerate</th>
     <th>Interestrate</th>
     <th>Duration</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -35,6 +38,7 @@
     <td><%= fix_issue.duration %></td>
     <td><%= link_to 'Show', fix_issue %></td>
     <td><%= link_to 'Edit', edit_fix_issue_path(fix_issue) %></td>
+    <td><%= link_to 'End issue', edit_end_fix_issue_path(fix_issue) %></td>
     <td><%= link_to 'Destroy', fix_issue, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>

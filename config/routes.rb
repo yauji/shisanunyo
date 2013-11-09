@@ -12,6 +12,8 @@ Shisanunyo::Application.routes.draw do
   resources :fix_issues
   resources :unfix_issues
   
+
+  match "fix_issues/:id/edit_end", :controller => :fix_issues, :action => :edit_end, :as => "edit_end_fix_issue", :via => :get
   match "performances", :controller => :performances, :action => :index
 
 

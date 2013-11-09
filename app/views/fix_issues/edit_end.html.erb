@@ -1,0 +1,169 @@
+<h1>Editing base_issue</h1>
+
+<%= javascript_include_tag "issue" %>
+
+<%= form_for(@fix_issue) do |f| %>
+  <% if @fix_issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fix_issue.errors.count, "error") %> prohibited this fix_issue from being saved:</h2>
+
+      <ul>
+      <% @fix_issue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= flash[:error] %>
+  <br/>
+  
+  <%= hidden_field_tag 'type', 'edit_end' %>
+
+  <table>
+  	<tbody id="fi_formbodyEditEnd">
+  		<tr id="fi_trName">
+  			<td>
+  				<%= f.label :name %><br />
+  			</td>
+  			<td>
+  				<%= @fix_issue.name %>
+  			</td>
+  		</tr>
+  		<tr id="fi_trPrincipalCurrency">
+  			<td>
+    <%= f.label :principalCurrency %>
+  			</td>
+  			<td>
+  				<%= @fix_issue.principalCurrency %>
+  			</td>
+  		</tr>
+  		<tr id="fi_trBaseCurrency">
+  			<td>
+    <%= f.label :baseCurrency %>
+  			</td>
+  			<td>
+    <%= collection_select(:fix_issue, :baseCurrency,
+			[[:JPY, 'JPY'], 
+			[:AUD, 'AUD'],
+			[:USD, 'USD'],
+			[:ERU, 'EUR'],
+			],
+			:first,
+			:last)
+			  %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trPrincipalJPY">
+  			<td>
+    <%= f.label :principalJPY %><br />
+  				
+  			</td>
+  			<td>
+    <%= @fix_issue.principalJPY %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trPrincipalForeign">
+  			<td>
+    <%= f.label :principalForeign %><br />
+  				
+  			</td>
+  			<td>
+    <%= @fix_issue.principalForeign %>
+  			</td>
+  		</tr>
+  		<tr id="fi_trDate">
+
+  			<td>
+    <%= f.label :date %><br />
+  				
+  			</td>
+  			<td>
+    <%= @fix_issue.date %>
+  				
+  			</td>
+  		</tr>
+  		
+  		<tr id="fi_trEndDate">
+
+  			<td>
+    <%= f.label :endDate %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.date_select :endDate %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trValueJPY">
+
+  			<td>
+    <%= f.label :valueJPY %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.number_field :valueJPY %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trValueForeign">
+  			<td>
+    <%= f.label :valueForeign %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.text_field :valueForeign %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trExchangeRate">
+  			<td>
+    <%= f.label :exchangeRate %><br />
+  				
+  			</td>
+  			<td>
+    <%= @fix_issue.exchangeRate %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trInterestRate">
+  			<td>
+    <%= f.label :interestRate %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.text_field :interestRate %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trDuration">
+  			<td>
+    <%= f.label :duration %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.number_field :duration %>
+  				
+  			</td>
+  		</tr>
+  		<tr id="fi_trMemo">
+  			<td>
+    <%= f.label :memo %><br />
+  				
+  			</td>
+  			<td>
+    <%= f.text_field :memo %>
+  				
+  			</td>
+  		</tr>
+  	</tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @base_issue %> |
+<%= link_to 'Back', base_issues_path %>

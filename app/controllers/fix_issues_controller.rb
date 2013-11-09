@@ -40,6 +40,18 @@ class FixIssuesController < ApplicationController
     @fix_issue = FixIssue.find(params[:id])
   end
 
+  # GET /fix_issues/1/edit_end
+  def edit_end
+    @fix_issue = FixIssue.find(params[:id])
+    
+    if @fix_issue.status == IssueStatus::FINISHED then
+        flash[:error] = "You can select only active issues."
+        redirect_to fix_issues_path
+        return
+    end
+    
+  end
+
   # POST /fix_issues
   # POST /fix_issues.json
   def create
@@ -250,6 +262,14 @@ class FixIssuesController < ApplicationController
   # PUT /fix_issues/1.json
   def update
     @fix_issue = FixIssue.find(params[:id])
+
+    if params[:type] == "edit_end" then
+      hoge
+      p "--------------------"
+      p params[:fix_issue]
+      @fix_issue.update_attribute(:status, IssueStatus::FINISHED)
+      
+    end
 
     respond_to do |format|
       if @fix_issue.update_attributes(params[:fix_issue])
