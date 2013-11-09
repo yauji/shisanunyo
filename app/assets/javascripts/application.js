@@ -15,8 +15,7 @@
 //= require_tree .
 
 $(function(){
-//	$("tr").css("color", "green");
-	// $("#fi_formbody > *").css("color", "red");
+	// fix issue form----------------------------
 	$("#fi_formbody > *").css("display", "none");
 	  //  	$("#fi_trName").css("display", "none");
 	  
@@ -90,6 +89,60 @@ $(function(){
     	}else if($("#fi_requestType").val() == "shikumi_fc2fc"){
 	$("#fi_trPrincipalForeign").css("display", "table-row");
 	$("#fi_trExchangeRate").css("display", "table-row");
+    		
+    	}else{
+    		
+    	}
+    	
+    });
+
+
+	// unfix issue form----------------------------
+	$("#ui_formbody > *").css("display", "none");
+	  
+	  	$("#ui_trName").css("display", "table-row");
+		$("#ui_trPrincipalCurrency").css("display", "table-row");
+		$("#ui_trBaseCurrency").css("display", "table-row");
+		$("#ui_trMemo").css("display", "table-row");
+		$("#ui_trDate").css("display", "table-row");
+		$("#ui_trNoItem").css("display", "table-row");
+		$("#ui_trPrincipalJPY").css("display", "table-row");
+		$("#ui_trBasePrice").css("display", "table-row");
+		
+		$("#unfix_issue_principalCurrency").attr("disabled", true);
+		$("#unfix_issue_baseCurrency").attr("disabled", true);
+
+	
+    	$("#ui_requestType").change(function(){
+		$("#ui_formbody > *").css("display", "none");
+
+	  	$("#ui_trName").css("display", "table-row");
+		$("#ui_trPrincipalCurrency").css("display", "table-row");
+		$("#ui_trBaseCurrency").css("display", "table-row");
+		$("#ui_trMemo").css("display", "table-row");
+		$("#ui_trDate").css("display", "table-row");
+		$("#ui_trNoItem").css("display", "table-row");
+	
+		$("#unfix_issue_principalCurrency").removeAttr("disabled");
+		$("#unfix_issue_baseCurrency").removeAttr("disabled");
+
+
+    	if($("#ui_requestType").val() == "jpy"){
+			$("#ui_trPrincipalJPY").css("display", "table-row");
+			$("#ui_trBasePrice").css("display", "table-row");
+	
+			$("#unfix_issue_principalCurrency").val("JPY");
+			$("#unfix_issue_principalCurrency").attr("disabled", true);
+			$("#unfix_issue_baseCurrency").val("JPY");
+			$("#unfix_issue_baseCurrency").attr("disabled", true);
+
+	
+    	}else if($("#ui_requestType").val() == "fc"){
+			$("#ui_trPrincipalForeign").css("display", "table-row");
+			$("#ui_trBasePriceForeign").css("display", "table-row");
+	
+			$("#unfix_issue_principalCurrency").val("AUD");
+			$("#unfix_issue_baseCurrency").val("AUD");
     		
     	}else{
     		

@@ -17,6 +17,7 @@ Shisanunyo::Application.routes.draw do
   match "performances", :controller => :performances, :action => :index
 
 
+  root :to => 'fix_issues#index'
 
 
   # The priority is based upon order of creation:
