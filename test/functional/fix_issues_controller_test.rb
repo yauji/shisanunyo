@@ -205,6 +205,13 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     # p fi
     assert_equal 200, fi.principalForeign
+    
+    account =
+        Account.find(:first, :conditions => {:currency => "AUD"})
+
+    assert_equal -188.0, account.balance
+    assert_equal 2, account.account_trans.count
+
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
@@ -237,8 +244,8 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     assert_equal 1062.0, account.balance
     assert_equal 2, account.account_trans.count
-        
-    
+    assert_equal 1050, account.account_trans.last.income
+           
     assert_redirected_to fix_issue_path(assigns(:fix_issue))
   end
 

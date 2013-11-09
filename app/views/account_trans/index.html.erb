@@ -17,6 +17,7 @@
     <td><%= account_tran.income %></td>
     <td><%= account_tran.expenditure %></td>
     <td><%= account_tran.memo %></td>
+    <td><%= account_tran.account.currency %></td>
     <td><%= link_to 'Show', account_tran %></td>
     <td><%= link_to 'Edit', edit_account_tran_path(account_tran) %></td>
     <td><%= link_to 'Destroy', account_tran, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

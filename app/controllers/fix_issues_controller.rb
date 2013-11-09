@@ -128,16 +128,8 @@ class FixIssuesController < ApplicationController
         return
       end
 
+      updateAccountBalanceAndAddTran4ExpenditureFC account
             
-      balance = account.balance - @fix_issue.principalForeign
-      account.update_attribute  :balance , balance
-      
-      #add account trans ----
-      accountTran = AccountTran.new(
-        :date => @fix_issue.date,
-        :expenditure => @fix_issue.principalForeign)
-      accountTran.account = account
-      accountTran.save
       
     elsif requestType == "teiki_jpy" then
       @fix_issue.status = IssueStatus::ACTIVE
@@ -165,8 +157,17 @@ class FixIssuesController < ApplicationController
     elsif requestType == "teiki_fc" then
       @fix_issue.status = IssueStatus::ACTIVE
       
+      #update account ----
+      account = 
+        Account.find(:first, :conditions => {:currency => @fix_issue.principalCurrency})
+        
       #check input---
       isError = false        
+        flash[:error] = ""
+      if account.nil? then
+        flash[:error] = "There is no account with " + @fix_issue.principalCurrency + ". "
+        isError = true
+      end
       if @fix_issue.principalForeign.nil? then
         flash[:error] += "Principal Foreign is mandatory. "
         isError = true
@@ -184,6 +185,9 @@ class FixIssuesController < ApplicationController
         redirect_to new_fix_issue_path
         return
       end
+
+      updateAccountBalanceAndAddTran4ExpenditureFC account
+
     elsif requestType == "shikumi_jpy2fc" then
       @fix_issue.status = IssueStatus::ACTIVE
       
@@ -218,6 +222,18 @@ class FixIssuesController < ApplicationController
         format.json { render :json => @fix_issue.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def updateAccountBalanceAndAddTran4ExpenditureFC account
+      balance = account.balance - @fix_issue.principalForeign
+      account.update_attribute  :balance , balance
+      
+      #add account trans ----
+      accountTran = AccountTran.new(
+        :date => @fix_issue.date,
+        :expenditure => @fix_issue.principalForeign)
+      accountTran.account = account
+      accountTran.save
   end
   
   def updateAccount 
@@ -303,11 +319,11 @@ class FixIssuesController < ApplicationController
 
         #add account trans ----
         accountTran = AccountTran.new(
-          :date => @fix_issue.endDate,
-          :income => @fix_issue.valueForeign)
+          :date => params[:fix_issue][:endDate],
+          :income => params[:fix_issue][:valueForeign])
         accountTran.account = account
         accountTran.save
-
+        
       end
       
     end
