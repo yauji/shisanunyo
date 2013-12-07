@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
     AUD = 'AUD'
     EUR = 'EUR'
   end
+
+  module TradeType
+    BUY = 'buy'
+    SELL = 'sell'
+    DIVIDEND = 'dividend'
+    
+  end
 end

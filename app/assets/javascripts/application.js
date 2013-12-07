@@ -107,7 +107,7 @@ $(function(){
 		$("#ui_trDate").css("display", "table-row");
 		$("#ui_trNoItem").css("display", "table-row");
 		$("#ui_trPrincipalJPY").css("display", "table-row");
-		$("#ui_trBasePrice").css("display", "table-row");
+		$("#ui_trBasicPrice").css("display", "table-row");
 		
 		$("#unfix_issue_principalCurrency").attr("disabled", true);
 		$("#unfix_issue_baseCurrency").attr("disabled", true);
@@ -129,7 +129,7 @@ $(function(){
 
     	if($("#ui_requestType").val() == "jpy"){
 			$("#ui_trPrincipalJPY").css("display", "table-row");
-			$("#ui_trBasePrice").css("display", "table-row");
+			$("#ui_trBasicPrice").css("display", "table-row");
 	
 			$("#unfix_issue_principalCurrency").val("JPY");
 			$("#unfix_issue_principalCurrency").attr("disabled", true);
@@ -139,7 +139,7 @@ $(function(){
 	
     	}else if($("#ui_requestType").val() == "fc"){
 			$("#ui_trPrincipalForeign").css("display", "table-row");
-			$("#ui_trBasePriceForeign").css("display", "table-row");
+			$("#ui_trBasicPriceForeign").css("display", "table-row");
 	
 			$("#unfix_issue_principalCurrency").val("AUD");
 			$("#unfix_issue_baseCurrency").val("AUD");

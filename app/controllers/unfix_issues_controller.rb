@@ -40,9 +40,31 @@ class UnfixIssuesController < ApplicationController
   # POST /unfix_issues
   # POST /unfix_issues.json
   def create
+    p params
     
+    @unfix_issue = UnfixIssue.new(params[:unfix_issue])
     
-    @unfix_issue = BaseIssue.new(params[:unfix_issue])
+    requestType = params[:ui_requestType]
+
+    if requestType == "jpy" then
+      @unfix_issue.principalCurrency = Currency::JPY 
+      @unfix_issue.baseCurrency = Currency::JPY 
+      @unfix_issue.status = IssueStatus::ACTIVE
+      
+      tradeLog = TradeLog.new(
+        :date => params[:tradelogDate],
+        :tradeType => TradeType::BUY, 
+        :basicPrice => params[:tradelogBasicPrice],
+        :noItem => params[:tradelogNoItem],
+        :buyValueJPY => @unfix_issue.principalJPY
+      )
+      
+      @unfix_issue.tradeLogs << tradeLog
+      
+      tradeLog.save
+    end
+    
+    p @unfix_issue
 
     respond_to do |format|
       if @unfix_issue.save
