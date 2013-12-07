@@ -40,6 +40,7 @@ class UnfixIssuesController < ApplicationController
   # POST /unfix_issues
   # POST /unfix_issues.json
   def create
+    p "=-----------------"
     p params
     
     @unfix_issue = UnfixIssue.new(params[:unfix_issue])
@@ -47,6 +48,33 @@ class UnfixIssuesController < ApplicationController
     requestType = params[:ui_requestType]
 
     if requestType == "jpy" then
+
+      #check input---
+      isError = false        
+      flash[:error] = ""
+      if params[:tradelogDate] == "" then
+        flash[:error] += "date is mandatory. "
+        isError = true
+      end
+      if params[:tradelogBasicPrice] == "" then
+        flash[:error] += "basic price is mandatory. "
+        isError = true
+      end
+      if params[:tradelogNoItem] == "" then
+        flash[:error] += "no item is mandatory. "
+        isError = true
+      end
+      if @unfix_issue.principalJPY.nil? then
+        flash[:error] += "Principal JPY is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        redirect_to new_unfix_issue_path
+        return
+      end
+
+
       @unfix_issue.principalCurrency = Currency::JPY 
       @unfix_issue.baseCurrency = Currency::JPY 
       @unfix_issue.status = IssueStatus::ACTIVE
@@ -64,7 +92,7 @@ class UnfixIssuesController < ApplicationController
       tradeLog.save
     end
     
-    p @unfix_issue
+ #   p @unfix_issue
 
     respond_to do |format|
       if @unfix_issue.save

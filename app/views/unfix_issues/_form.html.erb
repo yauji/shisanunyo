@@ -36,7 +36,7 @@
   		</tr>
   		<tr id="ui_trPrincipalCurrency">
   			<td>
-    <%= f.label :principalCurrency %>
+    			Principal Currency
   			</td>
   			<td>
     <%= collection_select(:unfix_issue, :principalCurrency,
@@ -52,7 +52,7 @@
   		</tr>
   		<tr id="ui_trBaseCurrency">
   			<td>
-    <%= f.label :baseCurrency %>
+    			Base Currency
   			</td>
   			<td>
     <%= collection_select(:unfix_issue, :baseCurrency,
@@ -70,8 +70,7 @@
   		</tr>
   		<tr id="ui_trPrincipalJPY">
   			<td>
-    <%= f.label :principalJPY %><br />
-  				
+    			Principal JPY 
   			</td>
   			<td>
     <%= f.number_field :principalJPY %>
@@ -80,7 +79,7 @@
   		</tr>
   		<tr id="ui_trPrincipalForeign">
   			<td>
-    <%= f.label :principalForeign %><br />
+    			Principal Foreign
   				
   			</td>
   			<td>
@@ -109,7 +108,7 @@
   		</tr>
   		<tr id="ui_trBasicPrice">
   			<td>
-    			base price
+    			basic price
   			</td>
   			<td>
 			    <%= number_field_tag 'tradelogBasicPrice' %>
@@ -117,7 +116,7 @@
   		</tr>
   		<tr id="ui_trBasicPriceForeign">
   			<td>
-    			base price foreign
+    			basic price foreign
   			</td>
   			<td>
 			    <%= number_field_tag 'tradelogBasicPriceForeign' %>
@@ -125,7 +124,7 @@
   		</tr>
   		<tr id="ui_trNoItem">
   			<td>
-    			NoItem
+    			No Item
   			</td>
   			<td>
 			    <%= number_field_tag 'tradelogNoItem' %>
