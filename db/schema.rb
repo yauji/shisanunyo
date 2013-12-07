@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109134920) do
+ActiveRecord::Schema.define(:version => 20131207004043) do
 
   create_table "account_trans", :force => true do |t|
     t.float    "income"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20131109134920) do
   end
 
   create_table "trade_logs", :force => true do |t|
-    t.string   "type"
     t.integer  "basicPrice"
     t.integer  "noItem"
     t.integer  "buyValueJPY"
@@ -70,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20131109134920) do
     t.text     "memo"
     t.integer  "base_issue_id"
     t.float    "basicPriceForeign"
+    t.string   "tradeType"
   end
 
   add_index "trade_logs", ["base_issue_id"], :name => "index_trade_logs_on_base_issue_id"

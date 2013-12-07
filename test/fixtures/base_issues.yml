@@ -54,3 +54,21 @@ shikumi_jpyaud01:
   noItem: 
   memo: 
   
+toushi_shintaku_n225:
+  type: UnfixIssue
+  principalCurrency: JPY
+  baseCurrency: JPY
+  principalJPY: 5000
+  principalForeign:  
+  status: active
+  name: nikkei225
+  date: 2012-09-01
+  endDate: 
+  valueJPY: 
+  valueForeign: 
+  exchangeRate: 
+  interestRate: 
+  duration: 
+  noItem: 10
+  memo: hoge
+  

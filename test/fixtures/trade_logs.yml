@@ -1,20 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  date: 2013-10-26 00:57:22
-  type: 
-  basicPrice: 1
-  noItem: 1
-  buyValueJPY: 1
-  buyValueForeign: 1.5
-  sellValueJPY: 1
-  sellValueForeign: 1.5
-  dividendValueJPY: 1
-  dividendValueForeign: 1.5
+nikkei225_01:
+  date: 2013-10-23
+  tradeType: buy 
+  basicPrice: 500
+  noItem: 10
+  buyValueJPY: 5000
+  buyValueForeign: 
+  sellValueJPY: 
+  sellValueForeign: 
+  dividendValueJPY: 
+  dividendValueForeign:
+  unfixIssue: toushi_shintaku_n225 
 
 two:
   date: 2013-10-26 00:57:22
-  type: 
+  tradeType: buy
   basicPrice: 1
   noItem: 1
   buyValueJPY: 1

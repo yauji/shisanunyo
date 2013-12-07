@@ -40,6 +40,8 @@ class UnfixIssuesController < ApplicationController
   # POST /unfix_issues
   # POST /unfix_issues.json
   def create
+    
+    
     @unfix_issue = BaseIssue.new(params[:unfix_issue])
 
     respond_to do |format|
