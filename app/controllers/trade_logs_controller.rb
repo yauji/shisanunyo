@@ -47,12 +47,40 @@ class TradeLogsController < ApplicationController
   # POST /trade_logs.json
   def create
     #TODO delete
-    p "--------------------tradelog create"
-    p params
-
+    # p "--------------------tradelog create"
+    # p params
     
-    @trade_log = TradeLog.new(params[:trade_log])
+    #for the case of error
+    @ui_id = params[:ui_id]
 
+    @trade_log = TradeLog.new(params[:trade_log])
+    unless params[:trade_log][:date] == "" then 
+      @trade_log.date = Date.parse(params[:trade_log][:date])
+    end
+    
+    # uis = UnfixIssue.find_all_by_id @ui_id
+    uis = UnfixIssue.find(:all)
+    # p uis
+    # p @ui_id
+    ui = uis.first
+    # p ui
+    
+    @trade_log.unfixIssue = ui
+    
+    case @trade_log.tradeType
+    when TradeType::BUY then
+      unless @trade_log.basicPrice == "" then
+        ui.update_attribute :principalJPY, ui.principalJPY + @trade_log.buyValueJPY 
+        ui.update_attribute :noItem, ui.noItem + @trade_log.noItem 
+      else
+      end
+    when TradeType::SELL then
+    when TradeType::DIVIDEND then
+      
+    end
+    
+    
+    
     respond_to do |format|
       if @trade_log.save
         format.html { redirect_to @trade_log, :notice => 'Trade log was successfully created.' }
