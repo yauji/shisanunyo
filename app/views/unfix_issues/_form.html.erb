@@ -14,6 +14,12 @@
   <% end %>
   
   <%= flash[:error] %>
+  <% unless @errors.nil? %>
+  <% @errors.each do |e| %>
+  	<li><%= e %></li>
+  <% end %>
+  <% end %>
+  		
   <br/>
 
 	<%= select_tag 'ui_requestType', options_for_select(

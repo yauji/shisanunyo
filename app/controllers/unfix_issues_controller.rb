@@ -51,26 +51,30 @@ class UnfixIssuesController < ApplicationController
 
       #check input---
       isError = false        
-      flash[:error] = ""
+      # flash[:error] = ""
+      @errors = []
       if params[:tradelogDate] == "" then
-        flash[:error] += "date is mandatory. "
+        @errors.push "date is mandatory. "
+        # flash[:error] += "date is mandatory. "
         isError = true
       end
       if params[:tradelogBasicPrice] == "" then
-        flash[:error] += "basic price is mandatory. "
+        @errors.push "basic price is mandatory. "
         isError = true
       end
       if params[:tradelogNoItem] == "" then
-        flash[:error] += "no item is mandatory. "
+        @errors.push "no item is mandatory. "
         isError = true
       end
       if @unfix_issue.principalJPY.nil? then
-        flash[:error] += "Principal JPY is mandatory. "
+        @errors.push  "Principal JPY is mandatory. "
         isError = true
       end
       
       if isError then
-        redirect_to new_unfix_issue_path
+        respond_to do |format|
+          format.html { render :action => "new" }
+        end
         return
       end
 
