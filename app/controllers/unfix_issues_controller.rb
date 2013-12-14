@@ -40,6 +40,7 @@ class UnfixIssuesController < ApplicationController
   # POST /unfix_issues
   # POST /unfix_issues.json
   def create
+    #TODO delete
     p "=-----------------"
     p params
     

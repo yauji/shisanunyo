@@ -65,6 +65,14 @@
   <%= @unfix_issue.noItem %>
 </p>
 
+<%= form_tag('/trade_logs/new', :method => :get) do %>
+	<%= hidden_field_tag 'ui_id', @unfix_issue.id %>
+	<%= submit_tag('buy/sell/dividend') %> 
+<% end %>
+
+<br/>
+
+
 
 <%= link_to 'Edit', edit_unfix_issue_path(@unfix_issue) %> |
 <%= link_to 'Back', unfix_issues_path %>

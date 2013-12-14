@@ -25,6 +25,12 @@ class TradeLogsController < ApplicationController
   # GET /trade_logs/new.json
   def new
     @trade_log = TradeLog.new
+    
+    #TODO delete
+    p "--------------------tradelog new"
+    p params
+    
+    @ui_id = params[:ui_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +46,11 @@ class TradeLogsController < ApplicationController
   # POST /trade_logs
   # POST /trade_logs.json
   def create
+    #TODO delete
+    p "--------------------tradelog create"
+    p params
+
+    
     @trade_log = TradeLog.new(params[:trade_log])
 
     respond_to do |format|

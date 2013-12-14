@@ -10,48 +10,87 @@
       </ul>
     </div>
   <% end %>
+  
+	<%= hidden_field_tag 'ui_id', @ui_id %>
+	
+  	<%= f.select :tradeType, 
+	[
+		["buy","buy"],
+		["sell","sell"],
+		["dividend","dividend"],
+	] 
+	%>
+	
 
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :basicPrice %><br />
-    <%= f.number_field :basicPrice %>
-  </div>
-  <div class="field">
-    <%= f.label :noItem %><br />
-    <%= f.number_field :noItem %>
-  </div>
-  <div class="field">
-    <%= f.label :buyValueJPY %><br />
-    <%= f.number_field :buyValueJPY %>
-  </div>
-  <div class="field">
-    <%= f.label :buyValueForeign %><br />
-    <%= f.text_field :buyValueForeign %>
-  </div>
-  <div class="field">
-    <%= f.label :sellValueJPY %><br />
-    <%= f.number_field :sellValueJPY %>
-  </div>
-  <div class="field">
-    <%= f.label :sellValueForeign %><br />
-    <%= f.text_field :sellValueForeign %>
-  </div>
-  <div class="field">
-    <%= f.label :dividendValueJPY %><br />
-    <%= f.number_field :dividendValueJPY %>
-  </div>
-  <div class="field">
-    <%= f.label :dividendValueForeign %><br />
-    <%= f.text_field :dividendValueForeign %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+	<table>
+  		<tbody id="tl_formbody">
+  			<tr id="tl_trDate">
+	  			<td>Date</td>
+  				<td>
+  					<%= f.text_field :date %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trBasicPrice">
+	  			<td>basicPrice</td>
+  				<td>
+  					<%= f.number_field :basicPrice %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trBasicPriceForeign">
+	  			<td>basicPriceForeign</td>
+  				<td>
+  					<%= f.text_field :basicPriceForeign %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trNoItem">
+	  			<td>noItem</td>
+  				<td>
+  					<%= f.number_field :noItem %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trBuyValueJPY">
+	  			<td>buyValueJPY</td>
+  				<td>
+  					<%= f.number_field :buyValueJPY %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trBuyValueForeign">
+	  			<td>buyValueForeign</td>
+  				<td>
+  					<%= f.text_field :buyValueForeign %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trSellValueJPY">
+	  			<td>sellValueJPY</td>
+  				<td>
+  					<%= f.number_field :sellValueJPY %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trSellValueForeign">
+	  			<td>sellValueForeign</td>
+  				<td>
+  					<%= f.text_field :sellValueForeign %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trDividendValueJPY">
+	  			<td>dividendValueJPY</td>
+  				<td>
+  					<%= f.number_field :dividendValueJPY %>
+  				</td>
+  			</tr>
+  			<tr id="tl_trDividendValueForeign">
+	  			<td>dividendValueForeign</td>
+  				<td>
+  					<%= f.text_field :dividendValueForeign %>
+  				</td>
+  			</tr>
+  		</tbody>
+  	</table>
+
+	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+
+
 <% end %>
