@@ -53,9 +53,19 @@ class TradeLogsController < ApplicationController
     #for the case of error
     @ui_id = params[:ui_id]
 
+    @errors = []
+
+
     @trade_log = TradeLog.new(params[:trade_log])
-    unless params[:trade_log][:date] == "" then 
+    unless params[:trade_log][:date] == "" then
       @trade_log.date = Date.parse(params[:trade_log][:date])
+    else
+      p "---------------"
+      @errors.push "date is mandatory. "
+      respond_to do |format|
+        format.html { render :action => "new" }
+      end
+      return
     end
     
     # uis = UnfixIssue.find_all_by_id @ui_id

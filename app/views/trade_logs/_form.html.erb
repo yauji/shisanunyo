@@ -14,9 +14,16 @@ unfix issue id:	<%= @ui_id %>
     </div>
   <% end %>
   
+  <% unless @errors.nil? %>
+  <% @errors.each do |e| %>
+  	<li><%= e %></li>
+  <% end %>
+  <% end %>
+  
+  
 	<%= hidden_field_tag 'ui_id', @ui_id %>
 	
-  	<%= f.select :tradeType, 
+  	<%= f.select :tradeType,  
 	[
 		["buy","buy"],
 		["sell","sell"],

@@ -149,5 +149,39 @@ $(function(){
     	}
     	
     });
+
+
+	// trade log form----------------------------
+	$("#tl_formbody > *").css("display", "none");
+
+  	$("#tl_trDate").css("display", "table-row");
+  	$("#tl_trBasicPrice").css("display", "table-row");
+  	$("#tl_trBasicPriceForeign").css("display", "table-row");
+  	$("#tl_trNoItem").css("display", "table-row");
+  	$("#tl_trBuyValueJPY").css("display", "table-row");
+  	$("#tl_trBuyValueForeign").css("display", "table-row");
+		
+	$("#trade_log_tradeType").change(function(){
+		$("#tl_formbody > *").css("display", "none");
+
+		$("#tl_trDate").css("display", "table-row");
+		$("#tl_trBasicPrice").css("display", "table-row");
+		$("#tl_trBasicPriceForeign").css("display", "table-row");
+		$("#tl_trNoItem").css("display", "table-row");
+
+    	if($("#trade_log_tradeType").val() == "buy"){
+			$("#tl_trBuyValueJPY").css("display", "table-row");
+			$("#tl_trBuyValueForeign").css("display", "table-row");
+    	}else if($("#trade_log_tradeType").val() == "sell"){
+			$("#tl_trSellValueJPY").css("display", "table-row");
+			$("#tl_trSellValueForeign").css("display", "table-row");
+    	}else if($("#trade_log_tradeType").val() == "dividend"){
+			$("#tl_trDividendValueJPY").css("display", "table-row");
+			$("#tl_trDividendValueForeign").css("display", "table-row");
+    	}else{
+    		
+    	}
+    });
+
 });
 
