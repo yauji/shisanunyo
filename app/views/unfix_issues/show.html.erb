@@ -1,38 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Basecurrency:</b>
-  <%= @unfix_issue.baseCurrency %>
-</p>
-
-<p>
-  <b>Principaljpy:</b>
-  <%= @unfix_issue.principalJPY %>
-</p>
-
-<p>
-  <b>Principalforeign:</b>
-  <%= @unfix_issue.principalForeign %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @unfix_issue.status %>
-</p>
-
-<p>
   <b>Name:</b>
   <%= @unfix_issue.name %>
 </p>
 
 <p>
-  <b>Date:</b>
-  <%= @unfix_issue.date %>
+  <b>Principal currency:</b>
+  <%= @unfix_issue.principalCurrency %>
 </p>
 
 <p>
-  <b>Enddate:</b>
-  <%= @unfix_issue.endDate %>
+  <b>Base currency:</b>
+  <%= @unfix_issue.baseCurrency %>
+</p>
+
+<p>
+  <b>Principal jpy:</b>
+  <%= @unfix_issue.principalJPY %>
+</p>
+
+<p>
+  <b>Principal foreign:</b>
+  <%= @unfix_issue.principalForeign %>
 </p>
 
 <p>
@@ -51,22 +41,13 @@
 </p>
 
 <p>
-  <b>Interestrate:</b>
-  <%= @unfix_issue.interestRate %>
-</p>
-
-<p>
-  <b>Duration:</b>
-  <%= @unfix_issue.duration %>
-</p>
-
-<p>
   <b>Noitem:</b>
   <%= @unfix_issue.noItem %>
 </p>
 
 <%= form_tag('/trade_logs/new', :method => :get) do %>
 	<%= hidden_field_tag 'ui_id', @unfix_issue.id %>
+	<%= hidden_field_tag 'ui_baseCurrency', @unfix_issue.baseCurrency %>
 	<%= submit_tag('buy/sell/dividend') %> 
 <% end %>
 

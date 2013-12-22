@@ -31,6 +31,12 @@ class TradeLogsController < ApplicationController
     p params
     
     @ui_id = params[:ui_id]
+    
+    if params[:ui_baseCurrency] == "JPY" then
+      @ui_baseCurrency = "jpy"
+    else
+      @ui_baseCurrency = "fc"
+    end
 
     respond_to do |format|
       format.html # new.html.erb
