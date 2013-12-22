@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AccountTransControllerTest < ActionController::TestCase
   setup do
-    @account_tran = account_trans(:one)
+    @account_tran = account_trans(:aud01)
   end
 
   test "should get index" do

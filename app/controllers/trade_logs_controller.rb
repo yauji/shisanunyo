@@ -47,8 +47,8 @@ class TradeLogsController < ApplicationController
   # POST /trade_logs.json
   def create
     #TODO delete
-    # p "--------------------tradelog create"
-    # p params
+    p "--------------------tradelog create"
+    p params
     
     #for the case of error
     @ui_id = params[:ui_id]
@@ -60,7 +60,6 @@ class TradeLogsController < ApplicationController
     unless params[:trade_log][:date] == "" then
       @trade_log.date = Date.parse(params[:trade_log][:date])
     else
-      p "---------------"
       @errors.push "date is mandatory. "
       respond_to do |format|
         format.html { render :action => "new" }
@@ -77,14 +76,21 @@ class TradeLogsController < ApplicationController
     
     @trade_log.unfixIssue = ui
     
+    if @trade_log.basicPrice == "" then
+      @errors.push "date is mandatory. "
+      respond_to do |format|
+        format.html { render :action => "new" }
+      end
+      return
+    end
+
     case @trade_log.tradeType
     when TradeType::BUY then
-      unless @trade_log.basicPrice == "" then
-        ui.update_attribute :principalJPY, ui.principalJPY + @trade_log.buyValueJPY 
-        ui.update_attribute :noItem, ui.noItem + @trade_log.noItem 
-      else
-      end
+      ui.update_attribute :principalJPY, ui.principalJPY + @trade_log.buyValueJPY 
+      ui.update_attribute :noItem, ui.noItem + @trade_log.noItem 
     when TradeType::SELL then
+      ui.update_attribute :principalJPY, ui.principalJPY - @trade_log.sellValueJPY 
+      ui.update_attribute :noItem, ui.noItem - @trade_log.noItem 
     when TradeType::DIVIDEND then
       
     end

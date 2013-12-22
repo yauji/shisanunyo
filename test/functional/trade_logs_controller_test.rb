@@ -34,11 +34,6 @@ class TradeLogsControllerTest < ActionController::TestCase
         :tradeType => "buy" },
         :ui_id => ui.id
 
-      # tls = TradeLog.find_all_by_buyValueJPY("1230")
-      # tls = TradeLog.find_all_by_buyValueJPY("1230")
-      # tls = TradeLog.find(:all, 
-        # :conditions => ["buyValueJPY like ? ", 1230], 
-        # :include => :unfixIssue)
       tls = TradeLog.find(:all, 
         :include => :unfixIssue,
         :conditions => {:buyValueJPY => "1230"}
@@ -57,6 +52,71 @@ class TradeLogsControllerTest < ActionController::TestCase
       assert_equal ui.noItem + 10, 
         tls.first.unfixIssue.noItem
 
+    end
+
+    assert_redirected_to trade_log_path(assigns(:trade_log))
+  end
+
+
+  test "should create trade_log sell jpy" do
+    # get unfix issue id
+    uis = UnfixIssue.find_all_by_name "nikkei225"
+    ui = uis.first
+    
+    assert_difference('TradeLog.count') do
+      post :create, :trade_log => {
+        :basicPrice => "98",
+        :date => "12/4", 
+        :sellValueJPY => "980",
+        :noItem => "10",
+        :tradeType => "sell" },
+        :ui_id => ui.id
+
+      tls = TradeLog.find(:all, 
+        :include => :unfixIssue,
+        :conditions => {:sellValueJPY => "980"}
+        )
+      # p "----tls----"
+      # p tls 
+      
+      assert_equal 1, tls.count, "not saved or invalid test data."
+      
+      # p tls.first.unfixIssue
+      
+      # p tls.first.unfixIssue
+      assert_equal ui.principalJPY - 980, 
+        tls.first.unfixIssue.principalJPY
+
+      assert_equal ui.noItem - 10, 
+        tls.first.unfixIssue.noItem
+
+    end
+
+    assert_redirected_to trade_log_path(assigns(:trade_log))
+  end
+
+
+
+  test "should create trade_log dividend jpy" do
+    # get unfix issue id
+    uis = UnfixIssue.find_all_by_name "nikkei225"
+    ui = uis.first
+    
+    assert_difference('TradeLog.count') do
+      post :create, :trade_log => {
+        :basicPrice => "234",
+        :date => "12/8", 
+        :dividendValueJPY => "2808",
+        :tradeType => "dividend" },
+        :ui_id => ui.id
+        
+      tls = TradeLog.find(:all, 
+        :include => :unfixIssue,
+        :conditions => {:dividendValueJPY => "2808"}
+        )
+      
+      assert_equal 1, tls.count, "not saved or invalid test data."
+      
     end
 
     assert_redirected_to trade_log_path(assigns(:trade_log))
