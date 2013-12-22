@@ -41,8 +41,8 @@ class UnfixIssuesController < ApplicationController
   # POST /unfix_issues.json
   def create
     #TODO delete
-    p "=-----------------"
-    p params
+    # p "=-----------------"
+    # p params
     
     @unfix_issue = UnfixIssue.new(params[:unfix_issue])
     
@@ -80,24 +80,27 @@ class UnfixIssuesController < ApplicationController
       end
 
 
+      @unfix_issue.noItem = params[:tradelogNoItem]
       @unfix_issue.principalCurrency = Currency::JPY 
       @unfix_issue.baseCurrency = Currency::JPY 
       @unfix_issue.status = IssueStatus::ACTIVE
       
       tradeLog = TradeLog.new(
-        :date => params[:tradelogDate],
+        # :date => params[:tradelogDate],
         :tradeType => TradeType::BUY, 
         :basicPrice => params[:tradelogBasicPrice],
         :noItem => params[:tradelogNoItem],
         :buyValueJPY => @unfix_issue.principalJPY
       )
       
-      @unfix_issue.tradeLogs << tradeLog
-      
+      tradeLog.date = Date.parse(params[:tradelogDate])
+
       tradeLog.save
+
+      @unfix_issue.tradeLogs << tradeLog
     end
     
- #   p @unfix_issue
+   # p @unfix_issue
 
     respond_to do |format|
       if @unfix_issue.save
@@ -113,7 +116,8 @@ class UnfixIssuesController < ApplicationController
   # PUT /unfix_issues/1
   # PUT /unfix_issues/1.json
   def update
-    @unfix_issue = BaseIssue.find(params[:id])
+    @unfix_issue = UnfixIssue.find(params[:id])
+    # @unfix_issue = BaseIssue.find(params[:id])
 
     respond_to do |format|
       if @unfix_issue.update_attributes(params[:unfix_issue])
