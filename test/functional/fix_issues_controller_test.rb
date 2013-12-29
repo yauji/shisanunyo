@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'test_helper'
 # require 'application_controller'
 
@@ -152,6 +153,7 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     # p fi
     assert_equal 11000, fi.principalJPY
+    assert_equal "JPY", fi.baseCurrency
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
