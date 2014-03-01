@@ -17,9 +17,9 @@
 $(function(){
 	// fix issue form----------------------------
 	$("#fi_formbody > *").css("display", "none");
-	  //  	$("#fi_trName").css("display", "none");
+	//  	$("#fi_trName").css("display", "none");
 	  
-	  	$("#fi_trName").css("display", "table-row");
+	$("#fi_trName").css("display", "table-row");
 	$("#fi_trPrincipalCurrency").css("display", "table-row");
 	$("#fi_trBaseCurrency").css("display", "table-row");
 	$("#fi_trDate").css("display", "table-row");
@@ -31,22 +31,22 @@ $(function(){
 //
 	
     $("#fi_requestType").change(function(){
-	$("#fi_formbody > *").css("display", "none");
+		$("#fi_formbody > *").css("display", "none");
 
-	$("#fi_trName").css("display", "table-row");
-	$("#fi_trPrincipalCurrency").css("display", "table-row");
-	$("#fi_trBaseCurrency").css("display", "table-row");
-	$("#fi_trDate").css("display", "table-row");
-	$("#fi_trMemo").css("display", "table-row");
+		$("#fi_trName").css("display", "table-row");
+		$("#fi_trPrincipalCurrency").css("display", "table-row");
+		$("#fi_trBaseCurrency").css("display", "table-row");
+		$("#fi_trDate").css("display", "table-row");
+		$("#fi_trMemo").css("display", "table-row");
 	
 			// $("#fix_issue_principalCurrency").removeAttr("disabled");
 			// $("#fix_issue_baseCurrency").removeAttr("disabled");
 
 
     	if($("#fi_requestType").val() == "jpy2fc"){
-	$("#fi_trPrincipalJPY").css("display", "table-row");
-	$("#fi_trValueForeign").css("display", "table-row");
-	$("#fi_trExchangeRate").css("display", "table-row");
+			$("#fi_trPrincipalJPY").css("display", "table-row");
+			$("#fi_trValueForeign").css("display", "table-row");
+			$("#fi_trExchangeRate").css("display", "table-row");
 	
 			$("#fix_issue_principalCurrency").val("JPY");
 			// $("#fix_issue_principalCurrency").attr("disabled", true);
