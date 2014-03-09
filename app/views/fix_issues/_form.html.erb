@@ -45,10 +45,7 @@
   			</td>
   			<td>
     <%= collection_select(:fix_issue, :principalCurrency,
-			[[:JPY, 'JPY'], 
-			[:AUD, 'AUD'],
-			[:USD, 'USD'],
-			[:ERU, 'EUR'],
+			[[:JPY, 'JPY'],
 			],
 			:first,
 			:last)
@@ -61,10 +58,10 @@
   			</td>
   			<td>
     <%= collection_select(:fix_issue, :baseCurrency,
-			[[:JPY, 'JPY'], 
+			[ 
 			[:AUD, 'AUD'],
 			[:USD, 'USD'],
-			[:ERU, 'EUR'],
+			[:EUR, 'EUR'],
 			],
 			:first,
 			:last)

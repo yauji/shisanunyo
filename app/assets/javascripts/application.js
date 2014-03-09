@@ -14,6 +14,33 @@
 //= require jquery_ujs
 //= require_tree .
 
+function setSelectOptionsJPY(selector){
+	var option = $('<option />');
+	option.val("JPY");
+	option.html("JPY");
+	selector.append(option);
+	
+			// [:AUD, 'AUD'],
+			// [:USD, 'USD'],
+			// [:ERU, 'EUR'],
+}
+function setSelectOptionsFC(selector){
+	var option = $('<option />');
+	option.val("AUD");
+	option.html("AUD");
+	selector.append(option);
+	
+	var option = $('<option />');
+	option.val("USD");
+	option.html("USD");
+	selector.append(option);
+	
+	var option = $('<option />');
+	option.val("EUR");
+	option.html("EUR");
+	selector.append(option);
+}
+
 $(function(){
 	// fix issue form----------------------------
 	$("#fi_formbody > *").css("display", "none");
@@ -28,7 +55,6 @@ $(function(){
 	$("#fi_trExchangeRate").css("display", "table-row");
 	$("#fi_trMemo").css("display", "table-row");
 
-//
 	
     $("#fi_requestType").change(function(){
 		$("#fi_formbody > *").css("display", "none");
@@ -38,7 +64,9 @@ $(function(){
 		$("#fi_trBaseCurrency").css("display", "table-row");
 		$("#fi_trDate").css("display", "table-row");
 		$("#fi_trMemo").css("display", "table-row");
-	
+		
+		$("#fix_issue_principalCurrency option").remove();
+		$("#fix_issue_baseCurrency option").remove();
 			// $("#fix_issue_principalCurrency").removeAttr("disabled");
 			// $("#fix_issue_baseCurrency").removeAttr("disabled");
 
@@ -48,8 +76,11 @@ $(function(){
 			$("#fi_trValueForeign").css("display", "table-row");
 			$("#fi_trExchangeRate").css("display", "table-row");
 	
+			setSelectOptionsJPY($("#fix_issue_principalCurrency"));
 			$("#fix_issue_principalCurrency").val("JPY");
 			// $("#fix_issue_principalCurrency").attr("disabled", true);
+			
+			setSelectOptionsFC($("#fix_issue_baseCurrency"));
 			$("#fix_issue_baseCurrency").val("AUD");
 
 	
@@ -57,38 +88,59 @@ $(function(){
 			$("#fi_trPrincipalForeign").css("display", "table-row");
 			$("#fi_trValueJPY").css("display", "table-row");
 			$("#fi_trExchangeRate").css("display", "table-row");
-	
-			$("#fix_issue_baseCurrency").val("JPY");
-			// $("#fix_issue_baseCurrency").attr("disabled", true);
 
+			setSelectOptionsFC($("#fix_issue_principalCurrency"));
+			$("#fix_issue_principalCurrency").val("AUD");
+			setSelectOptionsJPY($("#fix_issue_baseCurrency"));
+			$("#fix_issue_baseCurrency").val("JPY");
+	
     		
     	}else if($("#fi_requestType").val() == "teiki_jpy"){
 	    	$("#fi_trPrincipalJPY").css("display", "table-row");
 	    	$("#fi_trInterestRate").css("display", "table-row");
 	    	$("#fi_trDuration").css("display", "table-row");
 	
-	    	$("#fix_issue_principalCurrency").val("JPY");
-	    	// $("#fix_issue_principalCurrency").attr("disabled", true);
-	    	$("#fix_issue_baseCurrency").val("JPY");
-	    	// $("#fix_issue_baseCurrency").attr("disabled", true);
+			setSelectOptionsJPY($("#fix_issue_principalCurrency"));
+			$("#fix_issue_principalCurrency").val("JPY");
+			setSelectOptionsJPY($("#fix_issue_baseCurrency"));
+			$("#fix_issue_baseCurrency").val("JPY");
+
+    	}else if($("#fi_requestType").val() == "teiki_fc"){
+		    $("#fi_trPrincipalForeign").css("display", "table-row");
+		    $("#fi_trInterestRate").css("display", "table-row");
+	   	 	$("#fi_trDuration").css("display", "table-row");
+	   	 	
+			setSelectOptionsFC($("#fix_issue_principalCurrency"));
+			$("#fix_issue_principalCurrency").val("AUD");
+			setSelectOptionsFC($("#fix_issue_baseCurrency"));
+			$("#fix_issue_baseCurrency").val("AUD");
 
     		
-    	}else if($("#fi_requestType").val() == "teiki_fc"){
-	    $("#fi_trPrincipalForeign").css("display", "table-row");
-	    $("#fi_trInterestRate").css("display", "table-row");
-	    $("#fi_trDuration").css("display", "table-row");
-    		
     	}else if($("#fi_requestType").val() == "shikumi_jpy2fc"){
-	$("#fi_trPrincipalJPY").css("display", "table-row");
-	$("#fi_trExchangeRate").css("display", "table-row");
+			$("#fi_trPrincipalJPY").css("display", "table-row");
+			$("#fi_trExchangeRate").css("display", "table-row");
+
+			setSelectOptionsJPY($("#fix_issue_principalCurrency"));
+			$("#fix_issue_principalCurrency").val("JPY");
+			setSelectOptionsFC($("#fix_issue_baseCurrency"));
+			$("#fix_issue_baseCurrency").val("AUD");
     		
     	}else if($("#fi_requestType").val() == "shikumi_fc2jpy"){
-	$("#fi_trPrincipalForeign").css("display", "table-row");
-	$("#fi_trExchangeRate").css("display", "table-row");
-    		
+			$("#fi_trPrincipalForeign").css("display", "table-row");
+			$("#fi_trExchangeRate").css("display", "table-row");
+	
+			setSelectOptionsFC($("#fix_issue_principalCurrency"));
+			$("#fix_issue_principalCurrency").val("AUD");
+			setSelectOptionsJPY($("#fix_issue_baseCurrency"));
+			$("#fix_issue_baseCurrency").val("JPY");
     	}else if($("#fi_requestType").val() == "shikumi_fc2fc"){
-	$("#fi_trPrincipalForeign").css("display", "table-row");
-	$("#fi_trExchangeRate").css("display", "table-row");
+			$("#fi_trPrincipalForeign").css("display", "table-row");
+			$("#fi_trExchangeRate").css("display", "table-row");
+
+			setSelectOptionsFC($("#fix_issue_principalCurrency"));
+			$("#fix_issue_principalCurrency").val("AUD");
+			setSelectOptionsFC($("#fix_issue_baseCurrency"));
+			$("#fix_issue_baseCurrency").val("AUD");
     		
     	}else{
     		
