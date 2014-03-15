@@ -42,13 +42,15 @@ class UnfixIssuesController < ApplicationController
   def create
     #TODO delete
     # p "=-----------------"
-    # p params
+    p params
     
     @unfix_issue = UnfixIssue.new(params[:unfix_issue])
     
     requestType = params[:ui_requestType]
 
     if requestType == "jpy" then
+
+
 
       #check input---
       isError = false        

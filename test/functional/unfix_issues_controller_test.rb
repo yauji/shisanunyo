@@ -37,7 +37,8 @@ class UnfixIssuesControllerTest < ActionController::TestCase
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
-  
+
+  # not necessary?  
   test "should update unfix_issue n225" do
     
     ui_name = "toushin_modi"
@@ -59,6 +60,43 @@ class UnfixIssuesControllerTest < ActionController::TestCase
     assert_equal ui_name, ui.name
     
   end
+  
+  test "should update unfix_issue n225 (buy)" do
+    
+    ui_name = "toushin_modi"
+    
+    # p "----------------"
+    # p @unfix_issue_n225.id
+    
+    put :create,
+      :commit=>"Create trade log",
+      :ui_baseCurrency=>"jpy",
+      "ui_id" => @unfix_issue_n225.id,
+      "tradelog" => {
+        "basicPrice"=>"11",
+        "buyValueJPY"=>"110",
+        "tradeType"=>"buy",
+        "date"=>"1/3",
+        "noItem" =>"10" 
+      }
+
+    assert_redirected_to unfix_issue_path(assigns(:unfix_issue))
+    
+    ui = UnfixIssue.find(@unfix_issue_n225)
+
+    assert_equal 5110, ui.principalJPY
+    assert_equal 20, ui.noItem
+    
+    
+    assert_equal 3, ui.tradeLogs.length
+    
+    
+
+    assert_equal ui_name, ui.name
+    
+  end
+  
+  
 
   
 
