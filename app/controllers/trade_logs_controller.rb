@@ -53,8 +53,8 @@ class TradeLogsController < ApplicationController
   # POST /trade_logs.json
   def create
     #TODO delete
-    p "--------------------tradelog create"
-    p params
+    # p "--------------------tradelog create"
+    # p params
     
     #for the case of error
     @ui_id = params[:ui_id]
@@ -92,13 +92,35 @@ class TradeLogsController < ApplicationController
 
     case @trade_log.tradeType
     when TradeType::BUY then
-      ui.update_attribute :principalJPY, ui.principalJPY + @trade_log.buyValueJPY 
-      ui.update_attribute :noItem, ui.noItem + @trade_log.noItem 
+      if ui.baseCurrency == Currency::JPY then
+        ui.update_attribute :principalJPY, ui.principalJPY + @trade_log.buyValueJPY 
+        ui.update_attribute :noItem, ui.noItem + @trade_log.noItem
+      else
+        ui.update_attribute :principalForeign, ui.principalForeign + @trade_log.buyValueForeign 
+        ui.update_attribute :noItem, ui.noItem + @trade_log.noItem
+        
+        #update account
+        account = Account.find(:all,
+        :conditions => {
+          :currency => ui.principalCurrency
+        }
+        ).first
+        
+        account.update_attribute :balance, account.balance + @trade_log.buyValueForeign
+        
+        accountTran = AccountTran.new(
+          :date => @trade_log.date,
+          :expenditure => @trade_log.buyValueForeign)
+        accountTran.account = account
+        accountTran.save
+
+#hoge        
+      end
     when TradeType::SELL then
       # ui.update_attribute :principalJPY, ui.principalJPY - @trade_log.sellValueJPY 
       ui.update_attribute :noItem, ui.noItem - @trade_log.noItem 
     when TradeType::DIVIDEND then
-      
+      # do nothing
     end
     
     
@@ -113,6 +135,7 @@ class TradeLogsController < ApplicationController
       end
     end
   end
+  
 
   # PUT /trade_logs/1
   # PUT /trade_logs/1.json

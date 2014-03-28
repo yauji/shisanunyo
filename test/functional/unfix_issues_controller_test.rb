@@ -61,6 +61,33 @@ class UnfixIssuesControllerTest < ActionController::TestCase
     
   end
 
+  test "should create unfix_issue fc" do
+    
+    assert_difference('UnfixIssue.count') do
+      post :create, "ui_requestType"=>"fc", 
+        "tradelogDate" => "2/3",
+        "tradelogBasePriceForeign" => "100",
+        "tradelogNoItem" => "2",
+        "unfix_issue"=>{
+           "principalCurrency"=>"AUD", 
+           "principalForeign"=>"200", 
+           "baseCurrency"=>"AUD", 
+           "name"=>"toushin fc", 
+           "memo"=>"hogehoge",
+         }
+    end
+
+    ui = UnfixIssue.find(:first, 
+      :conditions => ['name = ?', 'fc'])
+
+    assert_equal 200, ui.principalForeign
+    
+    # assert_equal 12000, ui.tradeLogs.first.buyValueForeign
+    
+    # assert_equal 100, ui.noItem
+    
+  end
+
 =begin  
   test "should update unfix_issue n225 (buy)" do
     

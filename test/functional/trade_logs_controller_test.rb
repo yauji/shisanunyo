@@ -122,6 +122,46 @@ class TradeLogsControllerTest < ActionController::TestCase
     assert_redirected_to trade_log_path(assigns(:trade_log))
   end
 
+  test "should create trade_log buy aus" do
+
+    # get unfix issue id
+    uis = UnfixIssue.find_all_by_name "FC"
+    ui = uis.first
+    
+    
+    assert_difference('TradeLog.count') do
+      post :create, :trade_log => {
+        :basicPriceForeign => "1000",
+        :date => "2013/12/3", 
+        :buyValueForeign => "5000",
+        :noItem => "5",
+        :tradeType => "buy" },
+        :ui_id => ui.id
+
+      tls = TradeLog.find(:all, 
+        :include => :unfixIssue,
+        :conditions => {:buyValueForeign => "5000"}
+        )
+      # p "----tls----"
+      # p tls 
+      
+      assert_equal 1, tls.count, "not saved or invalid test data."
+      
+      # p tls.first.unfixIssue
+      
+      # p tls.first.unfixIssue
+      assert_equal ui.principalForeign + 5000, 
+        tls.first.unfixIssue.principalForeign
+
+      assert_equal ui.noItem + 5, 
+        tls.first.unfixIssue.noItem
+
+    end
+
+    assert_redirected_to trade_log_path(assigns(:trade_log))
+  end
+
+
 =begin
   test "should create trade_log" do
     assert_difference('TradeLog.count') do
