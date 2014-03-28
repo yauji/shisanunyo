@@ -88,8 +88,13 @@ class FixIssuesController < ApplicationController
       end
 
 
-            
-      balance = account.balance + @fix_issue.valueForeign
+      #if balance is zero
+      if account.balance.nil? then
+        balance = @fix_issue.valueForeign
+      else
+        balance = account.balance + @fix_issue.valueForeign
+      end
+      
       account.update_attribute  :balance , balance
       
       #add account trans ----

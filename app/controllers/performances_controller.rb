@@ -69,7 +69,10 @@ class PerformancesController < ApplicationController
     account = Account.find(:all)
     
     account.each do |a|
-      @value += a.balance * getRate(a.currency)
+      unless a.balance.nil? then
+        @value += a.balance * getRate(a.currency) 
+      end
+      
     end
     
     
@@ -84,9 +87,8 @@ class PerformancesController < ApplicationController
         @value += t.dividendValueJPY
       end
     end
-
     
-    #TODO
+    
     @value -= @principal
     
     

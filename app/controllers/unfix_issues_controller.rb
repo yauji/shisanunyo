@@ -79,7 +79,6 @@ class UnfixIssuesController < ApplicationController
         return
       end
 
-
       @unfix_issue.noItem = params[:tradelogNoItem]
       @unfix_issue.principalCurrency = Currency::JPY 
       @unfix_issue.baseCurrency = Currency::JPY 
