@@ -95,7 +95,7 @@ class TradeLogsController < ApplicationController
       ui.update_attribute :principalJPY, ui.principalJPY + @trade_log.buyValueJPY 
       ui.update_attribute :noItem, ui.noItem + @trade_log.noItem 
     when TradeType::SELL then
-      ui.update_attribute :principalJPY, ui.principalJPY - @trade_log.sellValueJPY 
+      # ui.update_attribute :principalJPY, ui.principalJPY - @trade_log.sellValueJPY 
       ui.update_attribute :noItem, ui.noItem - @trade_log.noItem 
     when TradeType::DIVIDEND then
       

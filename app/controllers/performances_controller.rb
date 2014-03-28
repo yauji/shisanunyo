@@ -16,6 +16,8 @@ class PerformancesController < ApplicationController
       @principal += fi.principalJPY
     end
     
+    
+    
     # trade log
     # tls = TradeLog.find(:all,
       # :conditions => ['buyValueJPY NOT ?', nil]
@@ -57,12 +59,27 @@ class PerformancesController < ApplicationController
     vuis = UnfixIssue.find(:all)
         
     vuis.each do |ui|
+      #get basic price
+      tl = ui.tradeLogs.last
+      
+      hyokagaku = tl.basicPrice * ui.noItem
+      
+      rate = 1
+      
+      if ui.baseCurrency != Currency::JPY then
+        rate = getRate(ui.baseCurrency)
+      end
+      
+      @value += hyokagaku * rate
+      
+=begin      
       unless ui.principalJPY.nil? then
         @value += ui.principalJPY  
       else
           #TODO check
         @value += ui.principalForeign * getRate(ui.baseCurrency)
       end
+=end      
     end
     
     #account

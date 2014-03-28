@@ -26,3 +26,29 @@ nikkei225_dividend_01:
   dividendValueForeign:
   unfixIssue: toushi_shintaku_n225 
 
+nikkei225_sell_01:
+  date: 2013-11-4
+  tradeType: sell
+  basicPrice: 900
+  noItem: 2
+  buyValueJPY: 
+  buyValueForeign: 
+  sellValueJPY: 1800
+  sellValueForeign: 
+  dividendValueJPY:  
+  dividendValueForeign:
+  unfixIssue: toushi_shintaku_n225 
+
+fc_1_sell_01:
+  date: 2013-11-5
+  tradeType: sell
+  basicPrice: 100
+  noItem: 3
+  buyValueJPY: 
+  buyValueForeign: 
+  sellValueJPY: 
+  sellValueForeign: 300 
+  dividendValueJPY:  
+  dividendValueForeign:
+  unfixIssue: toushi_fc_1
+

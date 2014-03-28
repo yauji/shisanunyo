@@ -12,7 +12,7 @@ class PerformancesControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_equal 26000, assigns(:principal)
-    assert_equal 124158.4, assigns(:value)
+    assert_equal 204238.4, assigns(:value)
     # assert_not_nil assigns(:principal)
   end
 
