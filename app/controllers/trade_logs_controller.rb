@@ -73,8 +73,8 @@ class TradeLogsController < ApplicationController
       return
     end
     
-    # uis = UnfixIssue.find_all_by_id @ui_id
-    uis = UnfixIssue.find(:all)
+    uis = UnfixIssue.find_all_by_id @ui_id
+    #uis = UnfixIssue.find(:all)
     # p uis
     # p @ui_id
     ui = uis.first

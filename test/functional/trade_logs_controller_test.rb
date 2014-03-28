@@ -84,7 +84,7 @@ class TradeLogsControllerTest < ActionController::TestCase
       # p tls.first.unfixIssue
       
       # p tls.first.unfixIssue
-      assert_equal ui.principalJPY - 980, 
+      assert_equal ui.principalJPY , 
         tls.first.unfixIssue.principalJPY
 
       assert_equal ui.noItem - 10, 
