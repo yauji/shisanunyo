@@ -54,6 +54,24 @@ shikumi_jpyaud01:
   noItem: 
   memo: 
   
+shikumi_audjpy01:
+  type: FixIssue
+  principalCurrency: AUD 
+  baseCurrency: JPY
+  principalJPY: 
+  principalForeign: 100  
+  status: finished
+  name: shikumi aud->jpy
+  date: 2012-08-01
+  endDate: 2013-08-01
+  valueJPY: 10100
+  valueForeign: 
+  exchangeRate: 94
+  interestRate: 1
+  duration: 12
+  noItem: 
+  memo: 
+  
 toushi_shintaku_n225:
   type: UnfixIssue
   principalCurrency: JPY
@@ -67,6 +85,24 @@ toushi_shintaku_n225:
   valueJPY: 
   valueForeign: 
   exchangeRate: 
+  interestRate: 
+  duration: 
+  noItem: 10
+  memo: hoge
+  
+toushi_fc_1:
+  type: UnfixIssue
+  principalCurrency: USD
+  baseCurrency: USD
+  principalJPY: 
+  principalForeign: 200  
+  status: active
+  name: FC
+  date: 2013-10-01
+  endDate: 
+  valueJPY: 
+  valueForeign: 
+  exchangeRate: 98 
   interestRate: 
   duration: 
   noItem: 10

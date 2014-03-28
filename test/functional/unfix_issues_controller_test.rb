@@ -60,7 +60,8 @@ class UnfixIssuesControllerTest < ActionController::TestCase
     assert_equal ui_name, ui.name
     
   end
-  
+
+=begin  
   test "should update unfix_issue n225 (buy)" do
     
     ui_name = "toushin_modi"
@@ -95,6 +96,7 @@ class UnfixIssuesControllerTest < ActionController::TestCase
     assert_equal ui_name, ui.name
     
   end
+=end
   
   
 

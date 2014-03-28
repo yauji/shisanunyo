@@ -29,13 +29,81 @@ class PerformancesController < ApplicationController
     end
 
 
-    #TODO creating...
+    #calculate value------------
+    @value = 0
     
-    @value = 100
+    # fix issue
+    vfis = FixIssue.find(:all 
+      )
+        
+    vfis.each do |fi|
+      if fi.status == IssueStatus::ACTIVE then
+        unless fi.principalJPY.nil? then
+          @value += fi.principalJPY  
+        else
+          #TODO treat in case that there are no account corresponding to currency
+          @value += fi.principalForeign * getRate(fi.baseCurrency)
+        end
+      else
+        unless fi.valueJPY.nil? then
+          @value += fi.valueJPY
+        end
+      end
+    end
+    
+    
+    
+    # unfix issue
+    vuis = UnfixIssue.find(:all)
+        
+    vuis.each do |ui|
+      unless ui.principalJPY.nil? then
+        @value += ui.principalJPY  
+      else
+          #TODO check
+        @value += ui.principalForeign * getRate(ui.baseCurrency)
+      end
+    end
+    
+    #account
+    account = Account.find(:all)
+    
+    account.each do |a|
+      @value += a.balance * getRate(a.currency)
+    end
+    
+    
+    #trade log
+    tl = TradeLog.find(:all)
+    
+    tl.each do |t|
+      unless t.sellValueJPY.nil? then
+        @value += t.sellValueJPY
+      end
+      unless t.dividendValueJPY.nil? then
+        @value += t.dividendValueJPY
+      end
+    end
+
+    
+    #TODO
+    @value -= @principal
     
     
     respond_to do |format|
       format.html # index.html.erb
     end
   end
+  
+  # return currency rate from account info
+  def getRate currency
+    accounts = Account.find(:all)
+    
+    accounts.each do |a|
+      if a.currency == currency then
+        return a.exchangeRate
+      end
+    end
+  end
+  
 end
