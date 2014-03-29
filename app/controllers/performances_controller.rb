@@ -62,12 +62,14 @@ class PerformancesController < ApplicationController
       #get basic price
       tl = ui.tradeLogs.last
       
-      hyokagaku = tl.basicPrice * ui.noItem
       
       rate = 1
       
       if ui.baseCurrency != Currency::JPY then
+        hyokagaku = tl.basicPriceForeign * ui.noItem
         rate = getRate(ui.baseCurrency)
+      else
+        hyokagaku = tl.basicPrice * ui.noItem
       end
       
       @value += hyokagaku * rate
