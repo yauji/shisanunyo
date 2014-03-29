@@ -82,10 +82,10 @@ class TradeLogsController < ApplicationController
     
     @trade_log.unfixIssue = ui
     
-    if @trade_log.basicPrice == "" then
-      @errors.push "date is mandatory. "
-      respond_to do |format|
-        format.html { render :action => "new" }
+    if @trade_log.basicPrice == "" && @trade_log.basicPriceForeign == "" then
+        @errors.push "basicPrice is mandatory. "
+        respond_to do |format|
+         format.html { render :action => "new" }
       end
       return
     end

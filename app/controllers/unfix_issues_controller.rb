@@ -57,10 +57,6 @@ class UnfixIssuesController < ApplicationController
     # flash[:error] += "date is mandatory. "
     isError = true
     end
-    if params[:tradelogBasicPrice] == "" then
-      @errors.push "basic price is mandatory. "
-    isError = true
-    end
     if params[:tradelogNoItem] == "" then
       @errors.push "no item is mandatory. "
     isError = true
@@ -68,6 +64,10 @@ class UnfixIssuesController < ApplicationController
 
     if requestType == "jpy" then
 # hoge
+      if params[:tradelogBasicPrice] == "" then
+        @errors.push "basic price is mandatory. "
+     isError = true
+     end
       if @unfix_issue.principalJPY.nil? then
         @errors.push  "Principal JPY is mandatory. "
         isError = true
@@ -100,6 +100,10 @@ class UnfixIssuesController < ApplicationController
       @unfix_issue.tradeLogs << tradeLog
     else
       #if foreign currency
+      if params[:tradelogBasicPriceForeign] == "" then
+        @errors.push "basic price foreign is mandatory. "
+      isError = true
+      end
       if @unfix_issue.principalForeign.nil? then
         @errors.push  "Principal Foreign is mandatory. "
         isError = true
@@ -117,7 +121,6 @@ class UnfixIssuesController < ApplicationController
       @unfix_issue.baseCurrency = @unfix_issue.baseCurrency
       @unfix_issue.status = IssueStatus::ACTIVE
 
-#TODO support SELL,divided
       tradeLog = TradeLog.new(
         :tradeType => TradeType::BUY, 
         :basicPrice => params[:tradelogBasicPrice],
