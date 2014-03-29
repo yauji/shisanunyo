@@ -78,13 +78,13 @@ class UnfixIssuesControllerTest < ActionController::TestCase
     end
 
     ui = UnfixIssue.find(:first, 
-      :conditions => ['name = ?', 'fc'])
+      :conditions => ['name = ?', 'toushin fc'])
 
     assert_equal 200, ui.principalForeign
     
-    # assert_equal 12000, ui.tradeLogs.first.buyValueForeign
+    assert_equal 200, ui.tradeLogs.first.buyValueForeign
     
-    # assert_equal 100, ui.noItem
+    assert_equal 2, ui.noItem
     
   end
 

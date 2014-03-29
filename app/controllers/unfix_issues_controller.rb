@@ -48,25 +48,26 @@ class UnfixIssuesController < ApplicationController
     
     requestType = params[:ui_requestType]
 
-    if requestType == "jpy" then
+  #check input---
+    isError = false
+ # flash[:error] = ""
+    @errors = []
+    if params[:tradelogDate] == "" then
+      @errors.push "date is mandatory. "
+    # flash[:error] += "date is mandatory. "
+    isError = true
+    end
+    if params[:tradelogBasicPrice] == "" then
+      @errors.push "basic price is mandatory. "
+    isError = true
+    end
+    if params[:tradelogNoItem] == "" then
+      @errors.push "no item is mandatory. "
+    isError = true
+    end
 
-      #check input---
-      isError = false        
-      # flash[:error] = ""
-      @errors = []
-      if params[:tradelogDate] == "" then
-        @errors.push "date is mandatory. "
-        # flash[:error] += "date is mandatory. "
-        isError = true
-      end
-      if params[:tradelogBasicPrice] == "" then
-        @errors.push "basic price is mandatory. "
-        isError = true
-      end
-      if params[:tradelogNoItem] == "" then
-        @errors.push "no item is mandatory. "
-        isError = true
-      end
+    if requestType == "jpy" then
+# hoge
       if @unfix_issue.principalJPY.nil? then
         @errors.push  "Principal JPY is mandatory. "
         isError = true
@@ -97,6 +98,39 @@ class UnfixIssuesController < ApplicationController
       tradeLog.save
 
       @unfix_issue.tradeLogs << tradeLog
+    else
+      #if foreign currency
+      if @unfix_issue.principalForeign.nil? then
+        @errors.push  "Principal Foreign is mandatory. "
+        isError = true
+      end
+      
+      if isError then
+        respond_to do |format|
+          format.html { render :action => "new" }
+        end
+        return
+      end
+
+      @unfix_issue.noItem = params[:tradelogNoItem]
+      @unfix_issue.principalCurrency = @unfix_issue.principalCurrency 
+      @unfix_issue.baseCurrency = @unfix_issue.baseCurrency
+      @unfix_issue.status = IssueStatus::ACTIVE
+
+#TODO support SELL,divided
+      tradeLog = TradeLog.new(
+        :tradeType => TradeType::BUY, 
+        :basicPrice => params[:tradelogBasicPrice],
+        :noItem => params[:tradelogNoItem],
+        :buyValueForeign => @unfix_issue.principalForeign
+      )
+      
+      tradeLog.date = Date.parse(params[:tradelogDate])
+
+      tradeLog.save
+
+      @unfix_issue.tradeLogs << tradeLog
+          
     end
     
    # p @unfix_issue
