@@ -63,7 +63,6 @@ class UnfixIssuesController < ApplicationController
     end
 
     if requestType == "jpy" then
-# hoge
       if params[:tradelogBasicPrice] == "" then
         @errors.push "basic price is mandatory. "
      isError = true
@@ -123,7 +122,7 @@ class UnfixIssuesController < ApplicationController
 
       tradeLog = TradeLog.new(
         :tradeType => TradeType::BUY, 
-        :basicPrice => params[:tradelogBasicPrice],
+        :basicPriceForeign => params[:tradelogBasicPriceForeign],
         :noItem => params[:tradelogNoItem],
         :buyValueForeign => @unfix_issue.principalForeign
       )
