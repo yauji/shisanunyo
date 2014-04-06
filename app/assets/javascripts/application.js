@@ -41,8 +41,24 @@ function setSelectOptionsFC(selector){
 	selector.append(option);
 }
 
+function autoSetPrincipal(){
+    var basicprice = $("#tradelogBasicPrice").val();
+    var basicpriceForeign = $("#tradelogBasicPriceForeign").val();
+    var noItem = $("#tradelogNoItem").val();
+
+
+    if($("#ui_requestType").val() == "jpy"){
+	$("#unfix_issue_principalJPY").val(basicprice * noItem);
+    }else if($("#ui_requestType").val() == "fc"){
+	$("#unfix_issue_principalForeign").val(basicpriceForeign * noItem);
+    }else{
+    }
+
+//hoge
+}
+
 $(function(){
-	// fix issue form----------------------------
+    // fix issue form----------------------------
 	$("#fi_formbody > *").css("display", "none");
 	//  	$("#fi_trName").css("display", "none");
 	  
@@ -55,9 +71,9 @@ $(function(){
 	$("#fi_trExchangeRate").css("display", "table-row");
 	$("#fi_trMemo").css("display", "table-row");
 
-	
+
     $("#fi_requestType").change(function(){
-		$("#fi_formbody > *").css("display", "none");
+	$("#fi_formbody > *").css("display", "none");
 
 		$("#fi_trName").css("display", "table-row");
 		$("#fi_trPrincipalCurrency").css("display", "table-row");
@@ -149,61 +165,79 @@ $(function(){
     });
 
 
-	// unfix issue form----------------------------
-	$("#ui_formbody > *").css("display", "none");
+    // unfix issue form----------------------------
+    $("#ui_formbody > *").css("display", "none");
+
 	  
-	  	$("#ui_trName").css("display", "table-row");
-		$("#ui_trPrincipalCurrency").css("display", "table-row");
-		$("#ui_trBaseCurrency").css("display", "table-row");
-		$("#ui_trMemo").css("display", "table-row");
-		$("#ui_trDate").css("display", "table-row");
-		$("#ui_trNoItem").css("display", "table-row");
-		$("#ui_trPrincipalJPY").css("display", "table-row");
-		$("#ui_trBasicPrice").css("display", "table-row");
-		
-		// $("#unfix_issue_principalCurrency").attr("disabled", true);
-		// $("#unfix_issue_baseCurrency").attr("disabled", true);
-
+    $("#ui_trName").css("display", "table-row");
+    $("#ui_trPrincipalCurrency").css("display", "table-row");
+    $("#ui_trBaseCurrency").css("display", "table-row");
+    $("#ui_trMemo").css("display", "table-row");
+    $("#ui_trDate").css("display", "table-row");
+    $("#ui_trNoItem").css("display", "table-row");
+    $("#ui_trPrincipalJPY").css("display", "table-row");
+    $("#ui_trBasicPrice").css("display", "table-row");
+    
+    // $("#unfix_issue_principalCurrency").attr("disabled", true);
+    // $("#unfix_issue_baseCurrency").attr("disabled", true);
+    
+    
+    $("#ui_requestType").change(function(){
+	$("#ui_formbody > *").css("display", "none");
 	
-    	$("#ui_requestType").change(function(){
-		$("#ui_formbody > *").css("display", "none");
-
-	  	$("#ui_trName").css("display", "table-row");
-		$("#ui_trPrincipalCurrency").css("display", "table-row");
-		$("#ui_trBaseCurrency").css("display", "table-row");
-		$("#ui_trMemo").css("display", "table-row");
-		$("#ui_trDate").css("display", "table-row");
-		$("#ui_trNoItem").css("display", "table-row");
+	$("#ui_trName").css("display", "table-row");
+	$("#ui_trPrincipalCurrency").css("display", "table-row");
+	$("#ui_trBaseCurrency").css("display", "table-row");
+	$("#ui_trMemo").css("display", "table-row");
+	$("#ui_trDate").css("display", "table-row");
+	$("#ui_trNoItem").css("display", "table-row");
 	
-		// $("#unfix_issue_principalCurrency").removeAttr("disabled");
-		// $("#unfix_issue_baseCurrency").removeAttr("disabled");
-
-
+	// $("#unfix_issue_principalCurrency").removeAttr("disabled");
+	// $("#unfix_issue_baseCurrency").removeAttr("disabled");
+	
+	
     	if($("#ui_requestType").val() == "jpy"){
-			$("#ui_trPrincipalJPY").css("display", "table-row");
-			$("#ui_trBasicPrice").css("display", "table-row");
-	
-			$("#unfix_issue_principalCurrency").val("JPY");
-			// $("#unfix_issue_principalCurrency").attr("disabled", true);
-			$("#unfix_issue_baseCurrency").val("JPY");
-			// $("#unfix_issue_baseCurrency").attr("disabled", true);
-
-	
+	    $("#ui_trPrincipalJPY").css("display", "table-row");
+	    $("#ui_trBasicPrice").css("display", "table-row");
+	    
+	    $("#unfix_issue_principalCurrency").val("JPY");
+	    // $("#unfix_issue_principalCurrency").attr("disabled", true);
+	    $("#unfix_issue_baseCurrency").val("JPY");
+	    // $("#unfix_issue_baseCurrency").attr("disabled", true);
+	    
+	    
     	}else if($("#ui_requestType").val() == "fc"){
-			$("#ui_trPrincipalForeign").css("display", "table-row");
-			$("#ui_trBasicPriceForeign").css("display", "table-row");
-	
-			$("#unfix_issue_principalCurrency").val("AUD");
-			$("#unfix_issue_baseCurrency").val("AUD");
+	    $("#ui_trPrincipalForeign").css("display", "table-row");
+	    $("#ui_trBasicPriceForeign").css("display", "table-row");
+	    
+	    $("#unfix_issue_principalCurrency").val("AUD");
+	    $("#unfix_issue_baseCurrency").val("AUD");
     		
     	}else{
-    		
+    	    
     	}
-    	
+
     });
 
+    //auto fill principal jpy with basic price and no item
+    $("#tradelogBasicPrice").change(function(){
+	autoSetPrincipal();
+    });
+    
+    $("#tradelogNoItem").change(function(){
+	autoSetPrincipal();
+    });
+    	
+    $("#tradelogBasicPriceForeign").change(function(){
+//	alert("hoge");
+	autoSetPrincipal();
+    });
 
-	// trade log form----------------------------
+//hoge    
+
+
+
+    // trade log form----------------------------
 	$("#tl_formbody > *").css("display", "none");
 
   	$("#tl_trDate").css("display", "table-row");
