@@ -1,19 +1,18 @@
-<h2>Listing unfix_issues</h2>
+<h2>Unfix issue list</h2>
 
 <%= flash[:error] %>
 
-<table>
-  <tr>
-    <th>Principal currency</th>
+<table class="list">
+  <tr class="header">
+    <th>Name</th>
     <th>Base currency</th>
+    <th>Principal currency</th>
     <th>Principal jpy</th>
     <th>Principal foreign</th>
     <th>Value</th>
     <th>Status</th>
-    <th>Name</th>
-    <th>memo</th>
     <th>noItem</th>
-    <th></th>
+    <th>memo</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,8 +20,9 @@
 
 <% @unfix_issues.each do |unfix_issue| %>
   <tr>
-    <td><%= unfix_issue.principalCurrency %></td>
+    <td><%= unfix_issue.name %></td>
     <td><%= unfix_issue.baseCurrency %></td>
+    <td><%= unfix_issue.principalCurrency %></td>
     <td><%= unfix_issue.principalJPY %></td>
     <td><%= unfix_issue.principalForeign %></td>
     <td><%= 
@@ -31,9 +31,8 @@
     	else bp = unfix_issue.tradeLogs.last.basicPriceForeign end  
     		unfix_issue.noItem * bp %></td>
     <td><%= unfix_issue.status %></td>
-    <td><%= unfix_issue.name %></td>
-    <td><%= unfix_issue.memo %></td>
     <td><%= unfix_issue.noItem %></td>
+    <td><%= unfix_issue.memo %></td>
     <td><%= link_to 'Show', unfix_issue %></td>
     <td><%= link_to 'Edit', edit_unfix_issue_path(unfix_issue) %></td>
     <td><%= link_to 'Destroy', unfix_issue, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

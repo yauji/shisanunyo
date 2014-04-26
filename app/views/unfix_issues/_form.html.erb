@@ -1,142 +1,142 @@
 <%= javascript_include_tag "issue" %>
 
 <%= form_for(@unfix_issue) do |f| %>
-  <% if @unfix_issue.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@unfix_issue.errors.count, "error") %> prohibited this unfix_issue from being saved:</h2>
-
-      <ul>
-      <% @unfix_issue.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if @unfix_issue.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@unfix_issue.errors.count, "error") %> prohibited this unfix_issue from being saved:</h2>
   
-  <% unless @errors.nil? %>
-  <% @errors.each do |e| %>
-  	<li><%= e %></li>
-  <% end %>
-  <% end %>
-  		
-  <br/>
+  <ul>
+    <% @unfix_issue.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-	<%= select_tag 'ui_requestType', options_for_select(
-	[
-		["JPY item","jpy"],
-		["Forign Currency item","fc"],
-	] )
-	%>
+<% unless @errors.nil? %>
+<% @errors.each do |e| %>
+<li><%= e %></li>
+<% end %>
+<% end %>
+
+<br/>
+
+<%= select_tag 'ui_requestType', options_for_select(
+    [
+    ["JPY item","jpy"],
+    ["Forign Currency item","fc"],
+    ] )
+    %>
 
 
-  <table>
-  	<tbody id="ui_formbody">
-  		<tr id="ui_trName">
-  			<td>
-  				<%= f.label :name %><br />
-  			</td>
-  			<td>
-  				<%= f.text_field :name %>
-  			</td>
-  		</tr>
-  		<tr id="ui_trPrincipalCurrency">
-  			<td>
-    			Principal Currency
-  			</td>
-  			<td>
-    <%= collection_select(:unfix_issue, :principalCurrency,
-			[[:JPY, 'JPY'], 
-			[:AUD, 'AUD'],
-			[:USD, 'USD'],
-			[:ERU, 'EUR'],
-			],
-			:first,
-			:last)
-			  %>
-  			</td>
-  		</tr>
-  		<tr id="ui_trBaseCurrency">
-  			<td>
-    			Base Currency
-  			</td>
-  			<td>
-    <%= collection_select(:unfix_issue, :baseCurrency,
-			[[:JPY, 'JPY'], 
-			[:AUD, 'AUD'],
-			[:USD, 'USD'],
-			[:ERU, 'EUR'],
-			],
-			:first,
-			:last)
-			  %>
-  				
-  				
-  			</td>
-  		</tr>
-  		<tr id="ui_trPrincipalJPY">
-  		  <td>
-    		    Principal JPY 
-  		  </td>
-  		  <td>
-		    <%= f.number_field :principalJPY %>
-  		  </td>
-  		</tr>
-  		<tr id="ui_trPrincipalForeign">
-  			<td>
-    			Principal Foreign
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :principalForeign %>
-  			</td>
-  		</tr>
-
-  		<tr id="ui_trMemo">
-  			<td>
-    <%= f.label :memo %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :memo %>
-  				
-  			</td>
-  		</tr>
-
-  		<tr id="ui_trDate">
-  			<td>
-    			Date
-  			</td>
-  			<td>
-			    <%= text_field_tag 'tradelogDate' %>
-  			</td>
-  		</tr>
-  		<tr id="ui_trBasicPrice">
-  			<td>
-    			basic price
-  			</td>
-  			<td>
-			    <%= number_field_tag 'tradelogBasicPrice' %>
-  			</td>
-  		</tr>
-  		<tr id="ui_trBasicPriceForeign">
-  			<td>
-    			basic price foreign
-  			</td>
-  			<td>
-			    <%= number_field_tag 'tradelogBasicPriceForeign' %>
-  			</td>
-  		</tr>
-  		<tr id="ui_trNoItem">
-  			<td>
-    			No Item
-  			</td>
-  			<td>
-			    <%= number_field_tag 'tradelogNoItem' %>
-  			</td>
-  		</tr>
-  	</tbody>
-  </table>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<table>
+  <tbody id="ui_formbody">
+    <tr id="ui_trName">
+      <td>
+  	<%= f.label :name %><br />
+      </td>
+      <td>
+  	<%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr id="ui_trPrincipalCurrency">
+      <td>
+    	Principal currency
+      </td>
+      <td>
+	<%= collection_select(:unfix_issue, :principalCurrency,
+	    [[:JPY, 'JPY'], 
+	    [:AUD, 'AUD'],
+	    [:USD, 'USD'],
+	    [:ERU, 'EUR'],
+	    ],
+	    :first,
+	    :last)
+	    %>
+      </td>
+    </tr>
+    <tr id="ui_trBaseCurrency">
+      <td>
+    	Base currency
+      </td>
+      <td>
+	<%= collection_select(:unfix_issue, :baseCurrency,
+	    [[:JPY, 'JPY'], 
+	    [:AUD, 'AUD'],
+	    [:USD, 'USD'],
+	    [:ERU, 'EUR'],
+	    ],
+	    :first,
+	    :last)
+	    %>
+  	
+  	
+      </td>
+    </tr>
+    <tr id="ui_trPrincipalJPY">
+      <td>
+    	Principal JPY 
+      </td>
+      <td>
+	<%= f.number_field :principalJPY %>
+      </td>
+    </tr>
+    <tr id="ui_trPrincipalForeign">
+      <td>
+    	Principal Foreign
+  	
+      </td>
+      <td>
+	<%= f.text_field :principalForeign %>
+      </td>
+    </tr>
+    
+    <tr id="ui_trMemo">
+      <td>
+	<%= f.label :memo %><br />
+  	
+      </td>
+      <td>
+	<%= f.text_field :memo %>
+  	
+      </td>
+    </tr>
+    
+    <tr id="ui_trDate">
+      <td>
+    	Date
+      </td>
+      <td>
+	<%= text_field_tag 'tradelogDate' %>
+      </td>
+    </tr>
+    <tr id="ui_trBasicPrice">
+      <td>
+    	Basic price
+      </td>
+      <td>
+	<%= number_field_tag 'tradelogBasicPrice' %>
+      </td>
+    </tr>
+    <tr id="ui_trBasicPriceForeign">
+      <td>
+    	basic price foreign
+      </td>
+      <td>
+	<%= number_field_tag 'tradelogBasicPriceForeign' %>
+      </td>
+    </tr>
+    <tr id="ui_trNoItem">
+      <td>
+    	No Item
+      </td>
+      <td>
+	<%= number_field_tag 'tradelogNoItem' %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

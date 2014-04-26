@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require_tree .
 
+
+
 function setSelectOptionsJPY(selector){
 	var option = $('<option />');
 	option.val("JPY");
@@ -285,6 +287,11 @@ $(function(){
     		
     	}
     });
+
+
+    //--table layout-----
+    $(".list tr").addClass("tdlist");
+
 
 });
 
