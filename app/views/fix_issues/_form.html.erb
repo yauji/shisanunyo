@@ -1,169 +1,156 @@
 <%= javascript_include_tag "issue" %>
 
 <%= form_for(@fix_issue) do |f| %>
-  <% if @fix_issue.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@fix_issue.errors.count, "error") %> prohibited this fix_issue from being saved:</h2>
+<% if @fix_issue.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@fix_issue.errors.count, "error") %> prohibited this fix_issue from being saved:</h2>
 
-      <ul>
-      <% @fix_issue.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @fix_issue.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
   
-  <%= flash[:error] %>
-  <br/>
+<%= flash[:error] %>
+<br/>
 
-	<%= select_tag 'fi_requestType', options_for_select(
-	[
-		["JPY to Forign Currency","jpy2fc"],
-		["Forign Currency to JPY","fc2jpy"],
-		["定期預金（円）","teiki_jpy"],
-		["定期預金（外貨）","teiki_fc"],
-		["仕組預金（円→外貨）","shikumi_jpy2fc"],
-		["仕組預金（外貨→円）","shikumi_fc2jpy"],
-		["仕組預金（外貨→外貨）","shikumi_fc2fc"],
-	] )
-	%>
+<%= select_tag 'fi_requestType', options_for_select(
+    [
+    ["JPY to Forign Currency","jpy2fc"],
+    ["Forign Currency to JPY","fc2jpy"],
+    ["定期預金（円）","teiki_jpy"],
+    ["定期預金（外貨）","teiki_fc"],
+    ["仕組預金（円→外貨）","shikumi_jpy2fc"],
+    ["仕組預金（外貨→円）","shikumi_fc2jpy"],
+    ["仕組預金（外貨→外貨）","shikumi_fc2fc"],
+    ] )
+    %>
 
 
-  <table>
-  	<tbody id="fi_formbody">
-  		<tr id="fi_trName">
-  			<td>
-  				<%= f.label :name %><br />
-  			</td>
-  			<td>
-  				<%= f.text_field :name %>
-  			</td>
-  		</tr>
-  		<tr id="fi_trPrincipalCurrency">
-  			<td>
-    <%= f.label :principalCurrency %>
-  			</td>
-  			<td>
-    <%= collection_select(:fix_issue, :principalCurrency,
-			[[:JPY, 'JPY'],
-			],
-			:first,
-			:last)
-			  %>
-  			</td>
-  		</tr>
-  		<tr id="fi_trBaseCurrency">
-  			<td>
-    <%= f.label :baseCurrency %>
-  			</td>
-  			<td>
-    <%= collection_select(:fix_issue, :baseCurrency,
-			[ 
-			[:AUD, 'AUD'],
-			[:USD, 'USD'],
-			[:EUR, 'EUR'],
-			],
-			:first,
-			:last)
-			  %>
-  				
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trPrincipalJPY">
-  			<td>
-    <%= f.label :principalJPY %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.number_field :principalJPY %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trPrincipalForeign">
-  			<td>
-    <%= f.label :principalForeign %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :principalForeign %>
-  			</td>
-  		</tr>
-  		<tr id="fi_trDate">
-
-  			<td>
-    <%= f.label :date %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.date_select :date %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trValueJPY">
-
-  			<td>
-    <%= f.label :valueJPY %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.number_field :valueJPY %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trValueForeign">
-  			<td>
-    <%= f.label :valueForeign %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :valueForeign %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trExchangeRate">
-  			<td>
-    <%= f.label :exchangeRate %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :exchangeRate %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trInterestRate">
-  			<td>
-    <%= f.label :interestRate %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :interestRate %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trDuration">
-  			<td>
-    <%= f.label :duration %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.number_field :duration %>
-  				
-  			</td>
-  		</tr>
-  		<tr id="fi_trMemo">
-  			<td>
-    <%= f.label :memo %><br />
-  				
-  			</td>
-  			<td>
-    <%= f.text_field :memo %>
-  				
-  			</td>
-  		</tr>
-  	</tbody>
-  </table>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<table>
+  <tbody id="fi_formbody">
+    <tr id="fi_trName">
+      <td>
+  	<%= f.label :name %><br />
+      </td>
+      <td>
+  	<%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr id="fi_trPrincipalCurrency">
+      <td>
+	Principal currency
+      </td>
+      <td>
+	<%= collection_select(:fix_issue, :principalCurrency,
+	    [[:JPY, 'JPY'],
+	    ],
+	    :first,
+	    :last)
+	    %>
+      </td>
+    </tr>
+    <tr id="fi_trBaseCurrency">
+      <td>
+	Base currency
+      </td>
+      <td>
+	<%= collection_select(:fix_issue, :baseCurrency,
+	    [ 
+	    [:AUD, 'AUD'],
+	    [:USD, 'USD'],
+	    [:EUR, 'EUR'],
+	    ],
+	    :first,
+	    :last)
+	    %>
+      </td>
+    </tr>
+    <tr id="fi_trPrincipalJPY">
+      <td>
+	Principal JPY
+      </td>
+      <td>
+	<%= f.number_field :principalJPY %>
+      </td>
+    </tr>
+    <tr id="fi_trPrincipalForeign">
+      <td>
+	Principal foreign
+      </td>
+      <td>
+	<%= f.text_field :principalForeign %>
+      </td>
+    </tr>
+    <tr id="fi_trDate">
+      
+      <td>
+	Date
+      </td>
+      <td>
+	<%= f.date_select :date %>
+      </td>
+    </tr>
+    <tr id="fi_trValueJPY">
+      <td>
+	Value JPY
+      </td>
+      <td>
+	<%= f.number_field :valueJPY %>
+  	
+      </td>
+    </tr>
+    <tr id="fi_trValueForeign">
+      <td>
+	Value foreign
+      </td>
+      <td>
+	<%= f.text_field :valueForeign %>
+  	
+      </td>
+    </tr>
+    <tr id="fi_trExchangeRate">
+      <td>
+	Exchange rate
+      </td>
+      <td>
+	<%= f.text_field :exchangeRate %>
+  	
+      </td>
+    </tr>
+    <tr id="fi_trInterestRate">
+      <td>
+	Interest rate
+      </td>
+      <td>
+	<%= f.text_field :interestRate %>
+  	
+      </td>
+    </tr>
+    <tr id="fi_trDuration">
+      <td>
+	Duration
+      </td>
+      <td>
+	<%= f.number_field :duration %>
+  	
+      </td>
+    </tr>
+    <tr id="fi_trMemo">
+      <td>
+	<%= f.label :memo %><br />
+  	
+      </td>
+      <td>
+	<%= f.text_field :memo %>
+  	
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

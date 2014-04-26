@@ -15,6 +15,10 @@ class AccountsController < ApplicationController
   def show
     @account = Account.find(params[:id])
 
+#    @account_trans = AccountTran.all
+    @account_trans = AccountTran.find(:all, :conditions => {:account_id => @account.id})
+#hoge    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @account }
