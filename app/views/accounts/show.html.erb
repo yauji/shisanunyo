@@ -15,6 +15,27 @@
   <%= @account.exchangeRate %>
 </p>
 
+<h3>transactions</h3>
+
+<table class="list">
+  <tr class="header">
+    <th>Date</th>
+    <th>Expenditure</th>
+    <th>Income</th>
+    <th>Memo</th>
+  </tr>
+  <% @account_trans.each do |at| %>
+  <tr>
+    <td><%= at.date %></td>
+    <td><%= at.expenditure %></td>
+    <td><%= at.income %></td>
+    <td><%= at.memo %></td>
+  </tr>
+<% end %>
+
+</table>
+   
+
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
