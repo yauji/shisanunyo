@@ -4,7 +4,8 @@
   <tr class="header">
     <th>Currency</th>
     <th>Balance</th>
-    <th>Exchangerate</th>
+    <th>Exchange rate</th>
+    <th>Value JPY</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,7 @@
     <td><%= account.currency %></td>
     <td><%= account.balance %></td>
     <td><%= account.exchangeRate %></td>
+    <td><%= account.exchangeRate * account.balance%></td>
     <td><%= link_to 'Show', account %></td>
     <td><%= link_to 'Edit', edit_account_path(account) %></td>
     <td><%= link_to 'Destroy', account, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
