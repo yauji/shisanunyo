@@ -15,6 +15,9 @@ class UnfixIssuesController < ApplicationController
   def show
     @unfix_issue = BaseIssue.find(params[:id])
 
+    @trade_logs = TradeLog.find(:all, :conditions=>{:base_issue_id => @unfix_issue.id})
+    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @unfix_issue }

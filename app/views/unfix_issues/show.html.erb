@@ -57,3 +57,38 @@
 
 <%= link_to 'Edit', edit_unfix_issue_path(@unfix_issue) %> |
 <%= link_to 'Back', unfix_issues_path %>
+
+<table class="list">
+  <tr class="header">
+    <th>basicPrice</th>
+    <th>basicPriceForeign</th>
+    <th>buyValueForeign</th>
+    <th>buyValueJPY</th>
+    <th>date</th>
+    <th>dividendValueForeign</th>
+    <th>dividendValueJPY</th>
+    <th>noItem</th>
+    <th>sellValueForeign</th>
+    <th>sellValueJPY</th>
+    <th>tradeType</th>
+    <th>memo</th>
+  </tr>
+
+<% @trade_logs.each do |trade_log| %>
+  <tr>
+    <td><%= trade_log.basicPrice %></td>
+    <td><%= trade_log.basicPriceForeign %></td>
+    <td><%= trade_log.buyValueForeign %></td>
+    <td><%= trade_log.buyValueJPY %></td>
+    <td><%= trade_log.date %></td>
+    <td><%= trade_log.dividendValueForeign %></td>
+    <td><%= trade_log.dividendValueJPY %></td>
+    <td><%= trade_log.noItem %></td>
+    <td><%= trade_log.sellValueForeign %></td>
+    <td><%= trade_log.sellValueJPY %></td>
+    <td><%= trade_log.tradeType %></td>
+    <td><%= trade_log.memo %></td>
+  </tr>
+<% end %>
+</table>
+
