@@ -6,8 +6,25 @@ class FixIssuesControllerTest < ActionController::TestCase
   setup do
 #    @base_issue = base_issues(:one)
 
+    user = 'yoji'
+    pw = 'hoge'
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
     
   end
+
+  test "should get index and check order" do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:fix_issues)
+
+    assert_equal "shikumi aud->jpy", assigns(:fix_issues)[0].name
+
+#    assigns(:fix_issues).each do |f|
+#      p f
+#    end
+
+  end
+
   
   test "should create fix_issue of JPY->Foreign Currency" do
     # fis = FixIssue.find(:all)

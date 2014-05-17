@@ -2,7 +2,7 @@ class UnfixIssuesController < ApplicationController
   # GET /unfix_issues
   # GET /unfix_issues.json
   def index
-    @unfix_issues = UnfixIssue.all
+    @unfix_issues = UnfixIssue.find(:all, :order =>"name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +14,9 @@ class UnfixIssuesController < ApplicationController
   # GET /unfix_issues/1.json
   def show
     @unfix_issue = BaseIssue.find(params[:id])
+
+    @trade_logs = TradeLog.find(:all, :conditions=>{:base_issue_id => @unfix_issue.id})
+    
 
     respond_to do |format|
       format.html # show.html.erb

@@ -3,11 +3,15 @@
 <table>
   <tr>
     <td>Value:</td>
-    <td><%= @value %></td>
+    <td><%= number_to_currency(@value, :unit => "￥") %></td>
   </tr>
   <tr>
     <td>Principal:</td>
-    <td><%= @principal %></td>
+    <td><%= number_to_currency(@principal, :unit => "￥") %></td>
+  </tr>
+  <tr>
+    <td>Gain and loss:</td>
+    <td><%= number_to_currency(@value - @principal, :unit => "￥") %></td>
   </tr>
 </table>
 

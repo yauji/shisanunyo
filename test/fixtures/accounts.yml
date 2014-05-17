@@ -11,3 +11,9 @@ usd:
   balance: 0
   exchangeRate: 98.1
   memo: hoge
+
+eur:
+  currency: EUR
+  balance: 0
+  exchangeRate: 130
+  memo: euro

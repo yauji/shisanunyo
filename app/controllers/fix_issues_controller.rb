@@ -4,7 +4,8 @@ class FixIssuesController < ApplicationController
   # GET /fix_issues
   # GET /fix_issues.json
   def index
-    @fix_issues = FixIssue.all
+    @fix_issues = FixIssue.find(:all, :order => "date ASC")
+#    @fix_issues = FixIssue.all
     
     respond_to do |format|
       format.html # index.html.erb
