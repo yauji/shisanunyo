@@ -30,8 +30,8 @@
   <tr>
     <td><%= fix_issue.name %></td>
     <td><%= fix_issue.baseCurrency %></td>
-    <td><%= fix_issue.principalJPY %></td>
-    <td><%= fix_issue.principalForeign %></td>
+    <td><%= number_to_currency(fix_issue.principalJPY, :unit => "￥") %></td>
+    <td><%= number_to_currency(fix_issue.principalForeign, :unit => "") %></td>
     <td><%= fix_issue.status %></td>
     <td><%= fix_issue.date %></td>
     <td><%= fix_issue.endDate %></td>

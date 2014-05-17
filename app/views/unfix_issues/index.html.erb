@@ -27,8 +27,8 @@
     <td><%= unfix_issue.name %></td>
     <td><%= unfix_issue.baseCurrency %></td>
     <td><%= unfix_issue.principalCurrency %></td>
-    <td><%= unfix_issue.principalJPY %></td>
-    <td><%= unfix_issue.principalForeign %></td>
+    <td><%= number_to_currency(unfix_issue.principalJPY, :unit => "￥") %></td>
+    <td><%=  number_to_currency(unfix_issue.principalForeign, :unit =>"") %></td>
     <td><%= 
     if !unfix_issue.tradeLogs.last.basicPrice.nil? then 
     	bp = unfix_issue.tradeLogs.last.basicPrice  
