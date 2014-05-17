@@ -3,6 +3,10 @@ require 'test_helper'
 class AccountsControllerTest < ActionController::TestCase
   setup do
     @account = accounts(:aud)
+
+    user = 'yoji'
+    pw = 'hoge'
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
   end
 
   test "should get index" do
@@ -11,6 +15,16 @@ class AccountsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:accounts)
   end
 
+  test "should get index with the order" do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:accounts)
+
+    assert_equal "EUR", assigns(:accounts)[1].currency
+    
+  end
+
+=begin
   test "should get new" do
     get :new
     assert_response :success
@@ -46,4 +60,5 @@ class AccountsControllerTest < ActionController::TestCase
 
     assert_redirected_to accounts_path
   end
+=end
 end
