@@ -20,8 +20,7 @@ class AccountsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:accounts)
 
-    assert_equal "EUR", assigns(:accounts)[1].currency
-    
+    assert_equal "EUR", assigns(:accounts)[1].currency    
   end
 
 =begin

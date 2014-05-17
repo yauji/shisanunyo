@@ -2,7 +2,7 @@ class UnfixIssuesController < ApplicationController
   # GET /unfix_issues
   # GET /unfix_issues.json
   def index
-    @unfix_issues = UnfixIssue.all
+    @unfix_issues = UnfixIssue.find(:all, :order =>"name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
