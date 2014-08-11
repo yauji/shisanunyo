@@ -41,6 +41,11 @@ function setSelectOptionsFC(selector){
 	option.val("EUR");
 	option.html("EUR");
 	selector.append(option);
+	
+	var option = $('<option />');
+	option.val("NZD");
+	option.html("NZD");
+	selector.append(option);
 }
 
 function autoSetPrincipal(){
