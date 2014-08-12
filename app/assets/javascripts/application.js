@@ -140,6 +140,7 @@ $(function(){
 
     		
     	}else if($("#fi_requestType").val() == "shikumi_jpy2fc"){
+	   	 	$("#fi_trDuration").css("display", "table-row");
 			$("#fi_trPrincipalJPY").css("display", "table-row");
 			$("#fi_trExchangeRate").css("display", "table-row");
 
@@ -149,6 +150,7 @@ $(function(){
 			$("#fix_issue_baseCurrency").val("AUD");
     		
     	}else if($("#fi_requestType").val() == "shikumi_fc2jpy"){
+	   	 	$("#fi_trDuration").css("display", "table-row");
 			$("#fi_trPrincipalForeign").css("display", "table-row");
 			$("#fi_trExchangeRate").css("display", "table-row");
 	
@@ -157,6 +159,7 @@ $(function(){
 			setSelectOptionsJPY($("#fix_issue_baseCurrency"));
 			$("#fix_issue_baseCurrency").val("JPY");
     	}else if($("#fi_requestType").val() == "shikumi_fc2fc"){
+	   	 	$("#fi_trDuration").css("display", "table-row");
 			$("#fi_trPrincipalForeign").css("display", "table-row");
 			$("#fi_trExchangeRate").css("display", "table-row");
 
