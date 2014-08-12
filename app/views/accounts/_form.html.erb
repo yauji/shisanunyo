@@ -13,7 +13,16 @@
 
   <div class="field">
     <%= f.label :currency %><br />
-    <%= f.text_field :currency %>
+    <%= collection_select(:account, :currency,
+	    [
+	    [:AUD, 'AUD'],
+	    [:USD, 'USD'],
+	    [:EUR, 'EUR'],
+	    [:NZD, 'NZD'],
+	    ],
+	    :first,
+	    :last)
+	    %>
   </div>
   <div class="field">
     <%= f.label :balance %><br />
