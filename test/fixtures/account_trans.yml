@@ -7,3 +7,10 @@ aud01:
   memo: MyText
   account: aud
 
+aud02:
+  date: 2012-09-01
+  income: 
+  expenditure: 1000.0
+  memo: MyText
+  account: aud
+

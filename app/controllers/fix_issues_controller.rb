@@ -348,8 +348,50 @@ class FixIssuesController < ApplicationController
   # DELETE /fix_issues/1
   # DELETE /fix_issues/1.json
   def destroy
+#    p ">>>>>>>>>>>>>>>>>"
+#    p params
+
     @fix_issue = FixIssue.find(params[:id])
-    @fix_issue.destroy
+
+#    p @fix_issue
+
+
+    if @fix_issue.status == IssueStatus::ACTIVE then
+      if @fix_issue.principalCurrency == 'JPY' then
+        #delete fix issue
+        @fix_issue.destroy
+      else
+#        @ats = AccountTran.find(:all, :conditions => {:date => @fix_issue.date, :expenditure => @fix_issue.principalForeign})
+        @ats = AccountTran.where(date: @fix_issue.date).where(expenditure: @fix_issue.principalForeign)
+
+        p @ats
+
+        if @ats.count != 1 then
+          #TODO throw exception?
+          
+        end
+
+        @ats.first.destroy
+
+        #TODO update balance account
+          
+        @fix_issue.destroy
+
+      end
+      #delete account trans
+      ats = 
+        AccountTran.where(:date => @fix_issue.date)
+
+      p ats
+
+    elsif @fix_issue.status == IssueStatus::FINISHED then
+      
+
+    end
+
+        
+
+#    @fix_issue.destroy
 
     respond_to do |format|
       format.html { redirect_to fix_issues_url }

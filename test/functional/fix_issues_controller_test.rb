@@ -7,7 +7,7 @@ class FixIssuesControllerTest < ActionController::TestCase
 #    @base_issue = base_issues(:one)
 
     user = 'yoji'
-    pw = 'hoge'
+    pw = 'oza'
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
     
   end
@@ -390,5 +390,16 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
+
+=begin
+  test "should destroy fix_issue" do
+    assert_difference('BaseIssue.count', -1) do
+      delete :destroy, :id => @base_issue
+    end
+
+    assert_redirected_to base_issues_path
+  end
+=end
+
 
 end
