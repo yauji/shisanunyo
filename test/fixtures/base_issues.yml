@@ -18,6 +18,24 @@ teiki_jpy01:
   noItem: 
   memo: teiki jpy
   
+teiki_jpy01_finished:
+  type: FixIssue
+  principalCurrency: JPY
+  baseCurrency: JPY
+  principalJPY: 10000
+  principalForeign: 
+  status: finished
+  name: JPY teiki2
+  date: 2013-09-26
+  endDate: 2014-09-25
+  valueJPY: 10100
+  valueForeign: 
+  exchangeRate: 
+  interestRate: 1.0
+  duration: 12
+  noItem: 
+  memo: teiki jpy finished
+  
 teiki_aud01:
   type: FixIssue
   principalCurrency: AUD
@@ -68,6 +86,42 @@ shikumi_audjpy01:
   valueForeign: 
   exchangeRate: 94
   interestRate: 1
+  duration: 12
+  noItem: 
+  memo: 
+  
+shikumi_jpyaud02_finished:
+  type: FixIssue
+  principalCurrency: JPY
+  baseCurrency: AUD
+  principalJPY: 10000
+  principalForeign: 
+  status: finished
+  name: shikumi jpy->aud
+  date: 2012-08-02
+  endDate: 2013-08-02
+  valueJPY: 
+  valueForeign: 102
+  exchangeRate: 94
+  interestRate: 2
+  duration: 12
+  noItem: 
+  memo: 
+
+shikumi_audusd01_finished:
+  type: FixIssue
+  principalCurrency: AUD
+  baseCurrency: USD
+  principalJPY: 
+  principalForeign: 100
+  status: finished
+  name: shikumi aud->usd
+  date: 2012-08-03
+  endDate: 2013-08-02
+  valueJPY: 
+  valueForeign: 102
+  exchangeRate: 1
+  interestRate: 2
   duration: 12
   noItem: 
   memo: 

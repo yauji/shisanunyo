@@ -354,7 +354,7 @@ class FixIssuesController < ApplicationController
     @fix_issue = FixIssue.find(params[:id])
 #    p @fix_issue
     if @fix_issue.status == IssueStatus::ACTIVE then
-      if @fix_issue.principalCurrency == 'JPY' then
+      if @fix_issue.principalCurrency == Currency::JPY then
         #delete fix issue
         @fix_issue.destroy
       else
@@ -373,14 +373,42 @@ class FixIssuesController < ApplicationController
 
         #update balance account
         updateAccountBalance account
-
         @fix_issue.destroy
       end
-      ats = 
-        AccountTran.where(:date => @fix_issue.date)
+#      ats = 
+#        AccountTran.where(:date => @fix_issue.date)
 
     elsif @fix_issue.status == IssueStatus::FINISHED then
-      #kokokara
+      if @fix_issue.principalCurrency == Currency::JPY then
+        if @fix_issue.baseCurrency == Currency::JPY then
+          #do nothing
+        else
+          ats = AccountTran.where(date: @fix_issue.endDate).where(income: @fix_issue.valueForeign)
+          account = ats.first.account
+          ats.first.destroy
+
+          #update balance account
+          updateAccountBalance account
+        end
+      else
+        #if from fc1, delete accountTran of fc1 and update balance
+        ats = AccountTran.where(date: @fix_issue.date).where(expenditure: @fix_issue.principalForeign)
+
+        account = ats.first.account
+        ats.first.destroy
+        #update balance account
+        updateAccountBalance account
+
+        if @fix_issue.baseCurrency != Currency::JPY then
+          atsBase = AccountTran.where(date: @fix_issue.endDate).where(income: @fix_issue.valueForeign)
+
+          accountBase = atsBase.first.account
+          atsBase.first.destroy
+          #update balance account
+          updateAccountBalance accountBase
+        end
+      end
+      @fix_issue.destroy
 
     end
 

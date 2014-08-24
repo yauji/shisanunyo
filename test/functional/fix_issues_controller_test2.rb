@@ -12,7 +12,6 @@ class FixIssuesControllerTest < ActionController::TestCase
     
   end
 
-=begin
   test "should destroy fix_issue jpy teiki" do
     assert_difference('BaseIssue.count', -1) do
       delete :destroy, :id => base_issues(:teiki_jpy01)
@@ -20,6 +19,7 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     assert_redirected_to fix_issues_path
   end
+=begin
 =end
 
   test "should destroy fix_issue aud teiki active" do
@@ -65,6 +65,92 @@ class FixIssuesControllerTest < ActionController::TestCase
 #    assert_equal(-310, accountAfter.balance)
     assert_equal(balance, accountAfter.first.balance)
     
+
+    assert_redirected_to fix_issues_path
+  end
+
+  test "should destroy fix_issue jpy teiki finished" do
+    target_fi = base_issues(:teiki_jpy01_finished)
+
+    assert_difference('BaseIssue.count', -1) do
+      delete :destroy, :id => target_fi
+    end
+
+    assert_redirected_to fix_issues_path
+  end
+
+
+
+
+  test "should destroy fix_issue jpy->aud finished" do
+    target_fi = base_issues(:shikumi_jpyaud02_finished)
+
+    ats = AccountTran.where(date: target_fi.endDate).where(income: target_fi.valueForeign)
+    account = ats.first.account
+
+    assert_difference('BaseIssue.count', -1) do
+      assert_difference('AccountTran.count', -1) do
+        delete :destroy, :id => target_fi
+      end
+    end
+
+
+    #check balance
+    ats2 = AccountTran.where(account_id: account.id)
+
+    balance = 0
+    ats2.each do |at|
+      if !at.income.nil? then
+        balance += at.income
+      end
+      if !at.expenditure.nil? then
+        balance -= at.expenditure
+      end
+    end
+    
+    accountAfter = Account.where(id: account.id)
+    assert_equal(balance, accountAfter.first.balance)
+
+    assert_redirected_to fix_issues_path
+  end
+
+
+  test "should destroy fix_issue aud->usd finished" do
+    target_fi = base_issues(:shikumi_audusd01_finished)
+
+#    ats = AccountTran.where(date: target_fi.endDate).where(income: target_fi.valueForeign)
+#    account = ats.first.account
+
+    assert_difference('BaseIssue.count', -1) do
+      assert_difference('AccountTran.count', -2) do
+        delete :destroy, :id => target_fi
+      end
+    end
+
+    accountPri = Account.where(currency: target_fi.principalCurrency)
+    accountBase = Account.where(currency: target_fi.baseCurrency)
+                                    
+#    p accountPri
+#    p accountBase
+
+
+=begin
+    #check balance
+    ats2 = AccountTran.where(account_id: account.id)
+
+    balance = 0
+    ats2.each do |at|
+      if !at.income.nil? then
+        balance += at.income
+      end
+      if !at.expenditure.nil? then
+        balance -= at.expenditure
+      end
+    end
+    
+    accountAfter = Account.where(id: account.id)
+    assert_equal(balance, accountAfter.first.balance)
+=end
 
     assert_redirected_to fix_issues_path
   end
