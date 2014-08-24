@@ -14,3 +14,24 @@ aud02:
   memo: MyText
   account: aud
 
+aud03:
+  date: 2012-09-02
+  income: 
+  expenditure: 200.0
+  memo: MyText
+  account: aud
+
+aud04:
+  date: 2012-09-03
+  income: 
+  expenditure: 210.0
+  memo: MyText
+  account: aud
+
+usd01:
+  date: 2012-09-03
+  income: 
+  expenditure: 210.0
+  memo: MyText
+  account: usd
+

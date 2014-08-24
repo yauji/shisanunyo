@@ -34,6 +34,8 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     assert_equal(1, @ats.count)
 
+    account = @ats.first.account
+#    assert_equal(12, account.balance)
 
     assert_difference('BaseIssue.count', -1) do
       delete :destroy, :id => base_issues(:teiki_aud01)
@@ -42,7 +44,26 @@ class FixIssuesControllerTest < ActionController::TestCase
     @ats = AccountTran.where(date: @target_fi.date).where(expenditure: @target_fi.principalForeign)
 
     assert_equal(0, @ats.count)
+
+    #check balance
+    ats2 = AccountTran.where(account_id: account.id)
+
+    balance = 0
+    ats2.each do |at|
+      if !at.income.nil? then
+        balance += at.income
+      end
+      if !at.expenditure.nil? then
+        balance -= at.expenditure
+      end
+    end
     
+    accountAfter = Account.where(id: account.id)
+#    p "after>>"
+#    p balance
+#    p accountAfter.first.balance
+#    assert_equal(-310, accountAfter.balance)
+    assert_equal(balance, accountAfter.first.balance)
     
 
     assert_redirected_to fix_issues_path

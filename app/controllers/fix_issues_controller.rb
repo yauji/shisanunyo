@@ -352,40 +352,35 @@ class FixIssuesController < ApplicationController
 #    p params
 
     @fix_issue = FixIssue.find(params[:id])
-
 #    p @fix_issue
-
-
     if @fix_issue.status == IssueStatus::ACTIVE then
       if @fix_issue.principalCurrency == 'JPY' then
         #delete fix issue
         @fix_issue.destroy
       else
 #        @ats = AccountTran.find(:all, :conditions => {:date => @fix_issue.date, :expenditure => @fix_issue.principalForeign})
-        @ats = AccountTran.where(date: @fix_issue.date).where(expenditure: @fix_issue.principalForeign)
+        ats = AccountTran.where(date: @fix_issue.date).where(expenditure: @fix_issue.principalForeign)
 
-        p @ats
-
-        if @ats.count != 1 then
+        if ats.count != 1 then
           #TODO throw exception?
-          
         end
 
-        @ats.first.destroy
+        account = ats.first.account
+        ats.first.destroy
 
-        #TODO update balance account
-          
+#        p "hoge1"
+#        p account
+
+        #update balance account
+        updateAccountBalance account
+
         @fix_issue.destroy
-
       end
-      #delete account trans
       ats = 
         AccountTran.where(:date => @fix_issue.date)
 
-      p ats
-
     elsif @fix_issue.status == IssueStatus::FINISHED then
-      
+      #kokokara
 
     end
 

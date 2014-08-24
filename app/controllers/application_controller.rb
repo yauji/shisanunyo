@@ -21,4 +21,26 @@ class ApplicationController < ActionController::Base
     DIVIDEND = 'dividend'
     
   end
+
+  # update balance
+  # after specified date
+  def updateAccountBalance (account)
+    
+    ats = AccountTran.where(account_id: account).order(:date)
+#    p ats
+
+    balance = 0
+    ats.each do |at|
+      if !at.income.nil? then
+        balance += at.income
+      end
+      if !at.expenditure.nil? then
+        balance -= at.expenditure
+      end
+    end
+
+    account.update_attribute :balance, balance
+
+  end
+
 end
