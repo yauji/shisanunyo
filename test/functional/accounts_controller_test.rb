@@ -5,7 +5,7 @@ class AccountsControllerTest < ActionController::TestCase
     @account = accounts(:aud)
 
     user = 'yoji'
-    pw = 'hoge'
+    pw = 'oza'
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
   end
 

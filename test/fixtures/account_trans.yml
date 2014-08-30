@@ -7,3 +7,38 @@ aud01:
   memo: MyText
   account: aud
 
+aud02:
+  date: 2012-09-01
+  income: 
+  expenditure: 1000.0
+  memo: MyText
+  account: aud
+
+aud03_shikumi_audusd01:
+  date: 2012-08-03
+  income: 
+  expenditure: 100
+  memo: MyText
+  account: aud
+
+usd_shikumi_audusd01:
+  date: 2013-08-02
+  income: 102
+  expenditure: 
+  memo: MyText
+  account: usd
+
+aud04_shikumi_jpyaud02:
+  date: 2013-08-02
+  income: 102
+  expenditure: 
+  memo: MyText
+  account: aud
+
+usd01:
+  date: 2012-09-03
+  income: 
+  expenditure: 210.0
+  memo: MyText
+  account: usd
+

@@ -7,7 +7,7 @@ class FixIssuesControllerTest < ActionController::TestCase
 #    @base_issue = base_issues(:one)
 
     user = 'yoji'
-    pw = 'hoge'
+    pw = 'oza'
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
     
   end
@@ -54,7 +54,7 @@ class FixIssuesControllerTest < ActionController::TestCase
       Account.find(:first, :conditions => {:currency => "AUD"})
     assert_equal 942, account.balance
     
-    assert_equal 2, account.account_trans.count
+    assert_equal 5, account.account_trans.count
     
     # p account
 =begin   
@@ -139,7 +139,7 @@ class FixIssuesControllerTest < ActionController::TestCase
     # p account
 
     assert_equal -788, account.balance
-    assert_equal 2, account.account_trans.count
+    assert_equal 5, account.account_trans.count
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
@@ -229,7 +229,7 @@ class FixIssuesControllerTest < ActionController::TestCase
         Account.find(:first, :conditions => {:currency => "AUD"})
 
     assert_equal -188.0, account.balance
-    assert_equal 2, account.account_trans.count
+    assert_equal 5, account.account_trans.count
 
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
@@ -262,7 +262,7 @@ class FixIssuesControllerTest < ActionController::TestCase
         Account.find(:first, :conditions => {:currency => @fi.baseCurrency})
 
     assert_equal 1062.0, account.balance
-    assert_equal 2, account.account_trans.count
+    assert_equal 5, account.account_trans.count
     assert_equal 1050, account.account_trans.last.income
            
     assert_redirected_to fix_issue_path(assigns(:fix_issue))
@@ -326,7 +326,7 @@ class FixIssuesControllerTest < ActionController::TestCase
         Account.find(:first, :conditions => {:currency => @fi.baseCurrency})
 
     assert_equal 1072.0, account.balance
-    assert_equal 2, account.account_trans.count
+    assert_equal 5, account.account_trans.count
     
     assert_redirected_to fix_issue_path(assigns(:fix_issue))
   end
@@ -390,5 +390,16 @@ class FixIssuesControllerTest < ActionController::TestCase
 
     #assert_redirected_to base_issue_path(assigns(:base_issue))
   end
+
+=begin
+  test "should destroy fix_issue" do
+    assert_difference('BaseIssue.count', -1) do
+      delete :destroy, :id => @base_issue
+    end
+
+    assert_redirected_to base_issues_path
+  end
+=end
+
 
 end
