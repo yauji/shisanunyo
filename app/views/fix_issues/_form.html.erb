@@ -31,6 +31,15 @@
 
 <table>
   <tbody id="fi_formbody">
+    <tr id="fi_trDate">
+      
+      <td>
+	Date
+      </td>
+      <td>
+	<%= f.text_field :date %>
+      </td>
+    </tr>
     <tr id="fi_trName">
       <td>
   	<%= f.label :name %><br />
@@ -83,15 +92,6 @@
       </td>
       <td>
 	<%= f.text_field :principalForeign %>
-      </td>
-    </tr>
-    <tr id="fi_trDate">
-      
-      <td>
-	Date
-      </td>
-      <td>
-	<%= f.text_field :date %>
       </td>
     </tr>
     <tr id="fi_trValueJPY">

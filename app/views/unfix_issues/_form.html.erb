@@ -31,6 +31,14 @@
 
 <table>
   <tbody id="ui_formbody">
+    <tr id="ui_trDate">
+      <td>
+    	Date
+      </td>
+      <td>
+	<%= text_field_tag 'tradelogDate' %>
+      </td>
+    </tr>
     <tr id="ui_trName">
       <td>
   	<%= f.label :name %><br />
@@ -103,14 +111,6 @@
       </td>
     </tr>
     
-    <tr id="ui_trDate">
-      <td>
-    	Date
-      </td>
-      <td>
-	<%= text_field_tag 'tradelogDate' %>
-      </td>
-    </tr>
     <tr id="ui_trBasicPrice">
       <td>
     	Basic price

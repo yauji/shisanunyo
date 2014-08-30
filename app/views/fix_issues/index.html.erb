@@ -8,12 +8,12 @@
 
 <table class="list">
   <tr class="header">
+    <th>Date</th>
     <th>Name</th>
     <th>Base currency</th>
     <th>Principal jpy</th>
     <th>Principal foreign</th>
     <th>Status</th>
-    <th>Date</th>
     <th>End date</th>
     <th>Value jpy</th>
     <th>Value foreign</th>
@@ -28,12 +28,12 @@
 
 <% @fix_issues.each do |fix_issue| %>
   <tr>
+    <td><%= fix_issue.date %></td>
     <td><%= fix_issue.name %></td>
     <td><%= fix_issue.baseCurrency %></td>
     <td><%= number_to_currency(fix_issue.principalJPY, :unit => "￥", :precision => 0) %></td>
     <td><%= number_to_currency(fix_issue.principalForeign, :unit => "") %></td>
     <td><%= fix_issue.status %></td>
-    <td><%= fix_issue.date %></td>
     <td><%= fix_issue.endDate %></td>
     <td><%= fix_issue.valueJPY %></td>
     <td><%= fix_issue.valueForeign %></td>
