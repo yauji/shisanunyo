@@ -44,3 +44,6 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+class InputValueException < Exception; end
+  

@@ -59,7 +59,7 @@ class FixIssuesController < ApplicationController
     requestType = params[:fi_requestType]
 
     @fix_issue = FixIssue.new(params[:fix_issue])
-    
+
     if requestType == "jpy2fc" then
       @fix_issue.status = IssueStatus::FINISHED
       
@@ -210,12 +210,23 @@ class FixIssuesController < ApplicationController
       end
       
     elsif requestType == "shikumi_fc2jpy" then
-      updateAccount 
+      begin
+        updateAccount 
+      rescue InputValueException
+        redirect_to new_fix_issue_path
+        return
+      end
       
     elsif requestType == "shikumi_fc2fc" then
-      updateAccount 
-
+      begin
+        updateAccount 
+      rescue InputValueException
+        redirect_to new_fix_issue_path
+        return
+      end
+#      updateAccount 
     end
+
     
     
 
@@ -253,7 +264,6 @@ class FixIssuesController < ApplicationController
         Account.find(:first, :conditions => {:currency => @fix_issue.principalCurrency})
         
       #check input---
-      #check input---
       isError = false
       flash[:error] = ""
       if account.nil? then
@@ -266,13 +276,14 @@ class FixIssuesController < ApplicationController
       end
       
       if isError then
-        redirect_to new_fix_issue_path
-        return
+#        redirect_to new_fix_issue_path
+#        return
+        raise InputValueException.new
       end
 
 
-      balance = account.balance - @fix_issue.principalForeign
-      account.update_attribute :balance , balance
+#      balance = account.balance - @fix_issue.principalForeign
+#      account.update_attribute :balance , balance
       
       #add account trans ----
       accountTran = AccountTran.new(
@@ -280,6 +291,8 @@ class FixIssuesController < ApplicationController
         :expenditure => @fix_issue.principalForeign)
       accountTran.account = account
       accountTran.save
+
+      updateAccountBalance account
     
   end
 
