@@ -42,7 +42,8 @@ nikkei225_sell_01:
 fc_1_sell_01:
   date: 2013-11-5
   tradeType: sell
-  basicPrice: 100
+  basicPrice: 
+  basicPriceForeign: 100
   noItem: 3
   buyValueJPY: 
   buyValueForeign: 
@@ -52,3 +53,5 @@ fc_1_sell_01:
   dividendValueForeign:
   unfixIssue: toushi_fc_1
 
+ 
+ 

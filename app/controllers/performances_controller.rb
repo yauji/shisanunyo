@@ -108,7 +108,7 @@ class PerformancesController < ApplicationController
     end
     
     
-    @value -= @principal
+#    @value -= @principal
     
     
     respond_to do |format|

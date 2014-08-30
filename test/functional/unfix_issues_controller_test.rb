@@ -2,6 +2,11 @@ require 'test_helper'
 
 class UnfixIssuesControllerTest < ActionController::TestCase
   setup do
+    user = 'yoji'
+    pw = 'oza'
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
+
+
     @unfix_issue_n225 = base_issues(:toushi_shintaku_n225)
   end
 
