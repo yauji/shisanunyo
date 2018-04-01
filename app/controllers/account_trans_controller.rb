@@ -2,7 +2,8 @@ class AccountTransController < ApplicationController
   # GET /account_trans
   # GET /account_trans.json
   def index
-    @account_trans = AccountTran.all
+    @account_trans = AccountTran.order(:date)
+    #@account_trans = AccountTran.all
 
     respond_to do |format|
       format.html # index.html.erb
